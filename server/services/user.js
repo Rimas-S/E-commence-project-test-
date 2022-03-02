@@ -14,10 +14,6 @@ const deleteUser = async (_id) => {
 
 const updateUser = async (_id, user) => {
   return User.findByIdAndUpdate(_id, user, { new: true });
-}
-
-// const updateProduct = async () => {
-//   return User.findByIdAndUpdate();
-// };
+};
 
 export default { create, findAllData, deleteUser, updateUser };
