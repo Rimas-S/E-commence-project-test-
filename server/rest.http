@@ -1,0 +1,52 @@
+POST http://localhost:5000/api/v1/products
+content-type: application/json
+
+{
+    "name": "product test 9",
+    "price": 22.5,
+    "size": ["X", "XL", "S", "M"]
+}
+
+###
+PUT http://localhost:5000/api/v1/products/621ea04b91325c3d3eee13ee
+content-type: application/json
+
+{
+    "name": "product test2",
+    "price": 35,
+    "size": ["X", "XS", "XL", "S"]
+}
+
+###
+GET http://localhost:5000/api/v1/products
+
+###
+DELETE http://localhost:5000/api/v1/products/621fb947a0f7e4b268a85ddf
+
+###
+POST http://localhost:5000/api/v1/users
+content-type: application/json
+
+{
+    "firstName": "Jonh",
+    "lastName": "Doe",
+    "age": 40,
+    "email": "jonhdue@gmail.com" 
+}
+
+###
+GET http://localhost:5000/api/v1/users
+
+###
+PUT http://localhost:5000/api/v1/users/621ec5467f4cf26235e3c2ce
+content-type: application/json
+
+{
+    "firstName": "Jonh",
+    "lastName": "Doe",
+    "age": 40,
+    "email": "jonhdue@gmail.com" 
+}
+
+###
+DELETE http://localhost:5000/api/v1/users/621ec5467f4cf26235e3c2ce
