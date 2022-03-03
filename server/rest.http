@@ -50,3 +50,6 @@ content-type: application/json
 
 ###
 DELETE http://localhost:5000/api/v1/users/621ec5467f4cf26235e3c2ce
+
+###
+PATCH  http://localhost:5000/api/v1/users/621fdd0e0568d118b0bb26f1/product/621ec4a64ce0e143c596f365

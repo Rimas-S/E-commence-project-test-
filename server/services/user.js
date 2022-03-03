@@ -5,7 +5,7 @@ const create = async (user) => {
 };
 
 const findAllData = async () => {
-  return User.find();
+  return User.find().populate("product");
 };
 
 const deleteUser = async (_id) => {
@@ -16,4 +16,17 @@ const updateUser = async (_id, user) => {
   return User.findByIdAndUpdate(_id, user, { new: true });
 };
 
-export default { create, findAllData, deleteUser, updateUser };
+const addProductsToUser = async (userId, productId) => {
+  const user = await User.findById(userId);
+  
+  user.product.push(productId)
+  return user.save();
+};
+
+export default {
+  create,
+  findAllData,
+  deleteUser,
+  updateUser,
+  addProductsToUser,
+};

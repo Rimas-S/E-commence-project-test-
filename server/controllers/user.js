@@ -46,3 +46,14 @@ export const updateUser = async (req, res) => {
     console.log(err);
   }
 };
+
+export const addProductsToUser = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const productId = req.params.productId;
+    console.log(userId, productId);
+    res.json(await UserService.addProductsToUser(userId, productId));
+  } catch (err) {
+    console.log(err);
+  }
+};
