@@ -4,7 +4,9 @@ const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   age: Number,
-  email: {type: String, unique: true},
+  email: String,
+  password: String,
+  address: String,
   product: [
     {
       type: mongoose.Schema.Types.ObjectId, ref: "Product"

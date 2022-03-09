@@ -31,9 +31,11 @@ content-type: application/json
 
 {
     "firstName": "Jonh",
-    "lastName": "Doefer",
+    "lastName": "Doe",
     "age": 41,
-    "email": "jonhduebmbnmn@gmail.com" 
+    "email": "jonhdue@gmail.com", 
+    "password": "abc12345",
+    "address": "Hansastrasse 24"
 }
 
 ###

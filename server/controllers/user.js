@@ -3,15 +3,21 @@ import UserService from "../services/user.js";
 
 export const createUser = async (req, res) => {
   try {
-    const { firstName, lastName, age, email } = req.body;
+    const { firstName, lastName, age, email, password, address } = req.body;
 
-    const user = new User({
+    const isUserNameExist = await UserService.findUserByEmail(email);
+if(isUserNameExist)
+return res.status(400).json({error: 'Username already exists'})
+
+    const newUser = new User({
       firstName,
       lastName,
       age,
       email,
+      password,
+      address,
     });
-    await UserService.create(user);
+    const user = await UserService.create(newUser);
     res.json(user);
   } catch (err) {
     console.log(err);

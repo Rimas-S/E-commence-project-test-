@@ -1,5 +1,10 @@
 import User from "../models/user.js";
 
+const findUserByEmail = async (email) => {
+  const user = await User.findOne({ email });
+  return user;
+};
+
 const create = async (user) => {
   return user.save();
 };
@@ -18,8 +23,8 @@ const updateUser = async (_id, user) => {
 
 const addProductsToUser = async (userId, productId) => {
   const user = await User.findById(userId);
-  
-  user.product.push(productId)
+
+  user.product.push(productId);
   return user.save();
 };
 
@@ -29,4 +34,5 @@ export default {
   deleteUser,
   updateUser,
   addProductsToUser,
+  findUserByEmail,
 };
