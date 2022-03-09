@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// .App {
+//   background-color: var(--backgroundColorMode);
+// }
+
+.container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card {
+  color: var(--mainFontColor);
+  background-color: var(--backgroundColorMode);
+  border-radius: 20px;
+  box-shadow: rgba(var(--primaryShadow), 0.35) 0px 5px 15px;
+  margin-bottom: 50px;
+  padding: 5px;
+}

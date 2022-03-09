@@ -2,9 +2,10 @@ POST http://localhost:5000/api/v1/products
 content-type: application/json
 
 {
-    "name": "product test 9",
-    "price": 22.5,
-    "size": ["X", "XL", "S", "M"]
+    "name": "product test 12",
+    "price": 20.5,
+    "size": ["X", "XL", "S", "M"],
+    "quantity": 10
 }
 
 ###
@@ -14,7 +15,8 @@ content-type: application/json
 {
     "name": "product test2",
     "price": 35,
-    "size": ["X", "XS", "XL", "S"]
+    "size": ["X", "XS", "XL", "S"],
+    "quantity": 5
 }
 
 ###
@@ -29,9 +31,9 @@ content-type: application/json
 
 {
     "firstName": "Jonh",
-    "lastName": "Doe",
-    "age": 40,
-    "email": "jonhdue@gmail.com" 
+    "lastName": "Doefer",
+    "age": 41,
+    "email": "jonhduebmbnmn@gmail.com" 
 }
 
 ###
@@ -53,3 +55,15 @@ DELETE http://localhost:5000/api/v1/users/621ec5467f4cf26235e3c2ce
 
 ###
 PATCH  http://localhost:5000/api/v1/users/621fdd0e0568d118b0bb26f1/product/621ec4a64ce0e143c596f365
+
+###
+
+GET http://localhost:5000/api/v1/image
+
+###
+POST http://localhost:5000/api/v1/image
+content-type: application/json
+
+{
+    "src": ["ghfhgjghfjfgjhfghj", "ssdsdsdsd"]  
+}

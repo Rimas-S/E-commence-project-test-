@@ -3,12 +3,13 @@ import ProductService from "../services/product.js";
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, size } = req.body;
+    const { name, price, size, quantity } = req.body;
 
     const product = new Product({
       name,
       price,
       size,
+      quantity,
     });
     await ProductService.create(product);
     res.json(product);
