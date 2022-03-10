@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import app from './index.js'
 
+import "dotenv/config";
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

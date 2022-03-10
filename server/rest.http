@@ -39,7 +39,17 @@ content-type: application/json
 }
 
 ###
+POST http://localhost:5000/api/v1/users/login
+content-type: application/json
+
+{
+    "email": "jonhdue@gmail.com", 
+    "password": "abc12345"
+}
+
+###
 GET http://localhost:5000/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjI5Mzk5NzVkMmY1ODhjNDhjZmRmNzAiLCJlbWFpbCI6ImpvbmhkdWVAZ21haWwuY29tIiwiaWF0IjoxNjQ2OTE1OTMxfQ.UNTe0t4q65RTev0VK35v-mVAes9mCDM5ro5GUvMulAU
 
 ###
 PUT http://localhost:5000/api/v1/users/621ec5467f4cf26235e3c2ce

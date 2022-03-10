@@ -1,20 +1,27 @@
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
 import User from "../models/user.js";
 import UserService from "../services/user.js";
+import { JWT_SECRET } from "../util/secrets.js";
 
 export const createUser = async (req, res) => {
   try {
     const { firstName, lastName, age, email, password, address } = req.body;
 
     const isUserNameExist = await UserService.findUserByEmail(email);
-if(isUserNameExist)
-return res.status(400).json({error: 'Username already exists'})
+    if (isUserNameExist)
+      return res.status(400).json({ error: "Username already exists" });
+
+    const salt = await bcrypt.genSalt(10);
+    const hasedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
       firstName,
       lastName,
       age,
       email,
-      password,
+      password: hasedPassword,
       address,
     });
     const user = await UserService.create(newUser);
@@ -60,6 +67,30 @@ export const addProductsToUser = async (req, res) => {
     console.log(userId, productId);
     res.json(await UserService.addProductsToUser(userId, productId));
   } catch (err) {
+    console.log(err);
+  }
+};
+
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await UserService.findUserByEmail(email);
+    if (user) {
+      const isCorrectPassword = await bcrypt.compare(password, user.password);
+      if (!isCorrectPassword) {
+        return res.json("Password is not correct");
+      }
+      const token = jwt.sign(
+        { userId: user._id, email: user.email },
+        JWT_SECRET
+      );
+
+      res.json({ token, user });
+    } else {
+      res.json("User does not exsist, please register!");
+    }
+  } catch (err) {
+    res.json("Server error: " + err);
     console.log(err);
   }
 };
