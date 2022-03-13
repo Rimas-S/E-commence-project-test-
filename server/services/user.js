@@ -10,7 +10,7 @@ const create = async (user) => {
 };
 
 const findAllData = async () => {
-  return User.find().populate("product");
+  return User.find().populate("product").select('-password');
 };
 
 const deleteUser = async (_id) => {

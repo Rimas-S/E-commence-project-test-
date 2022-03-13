@@ -1,10 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import "./Test.scss";
+
+interface Data {
+  _id: string;
+  src: Array<string>;
+}
 
 const Test = () => {
   const [imageUrl, setimag] = useState([null]);
-  const [data, setData] = useState([{}]);
+  const [data, setData] = useState<Data[]>();
   const [saveResponse, setSaveResponse] = useState({});
 
   console.log(imageUrl);
@@ -51,14 +57,14 @@ const Test = () => {
         console.log(error);
       });
   }, [saveResponse]);
+  const test = data ? data[0].src[0] : "";
+  console.log(test);
 
   console.log(data);
 
-  // console.log(imageUrl);
-
   return (
     <div>
-      <form >
+      <form>
         <label>Choose file to upload</label>
         <input
           onChange={handlerImg}
@@ -81,6 +87,8 @@ const Test = () => {
           <img height={300} src={item.src} alt="" />
         </div>
       ))} */}
+
+      <ProductCard image={test}/>
     </div>
   );
 };

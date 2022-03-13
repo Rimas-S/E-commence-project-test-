@@ -11,7 +11,7 @@ export const createUser = async (req, res) => {
 
     const isUserNameExist = await UserService.findUserByEmail(email);
     if (isUserNameExist)
-      return res.status(400).json({ error: "Username already exists" });
+      return res.json({ error: "User email already exists" });
 
     const salt = await bcrypt.genSalt(10);
     const hasedPassword = await bcrypt.hash(password, salt);
@@ -25,9 +25,10 @@ export const createUser = async (req, res) => {
       address,
     });
     const user = await UserService.create(newUser);
-    res.json(user);
+    const response = {success: "Account created successfully", email: user.email}
+    res.json(response);
   } catch (err) {
-    console.log(err);
+    res.json({error: err.message});    
   }
 };
 
@@ -82,7 +83,7 @@ export const loginUser = async (req, res) => {
       }
       const token = jwt.sign(
         { userId: user._id, email: user.email },
-        JWT_SECRET
+        JWT_SECRET, {expiresIn: '1h' }
       );
 
       res.json({ token, user });
