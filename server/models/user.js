@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   address: String,
+  role: { type: String, default: 'user' },
   product: [
     {
       type: mongoose.Schema.Types.ObjectId, ref: "Product"

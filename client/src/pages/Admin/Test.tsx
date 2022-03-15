@@ -31,8 +31,6 @@ const Test = () => {
   };
 
   const handlerPost = () => {
-    console.log("hand");
-
     axios
       .post("http://localhost:5000/api/v1/image", {
         src: imageUrl,
@@ -88,7 +86,7 @@ const Test = () => {
         </div>
       ))} */}
 
-      <ProductCard image={test}/>
+      <ProductCard image={test} />
     </div>
   );
 };

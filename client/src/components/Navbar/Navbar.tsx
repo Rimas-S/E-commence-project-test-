@@ -3,17 +3,58 @@ import ThemeSwitch from "./ThemeSwitch/ThemeSwitch";
 import { Link } from "react-router-dom";
 import SignIn from "./Buttons/SignIn";
 import SignUp from "./Buttons/SignUp";
+import UserMenu from "../UserMenu/UserMenu";
+import { useEffect, useState } from "react";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { Token } from "../../State/StateTypes/stateTypes";
+import jwt_decode from "jwt-decode";
+import { deleteToken } from "../../State/Redux/action";
 
 const Navbar = () => {
   const navbar = ["Home", "Shop", "Contact", "Test"];
+
+  const [isLoggedIn, setisLoggedIn] = useState("false");
+
+  const dispatch = useDispatch();
+  const checkToken: Token | null = useSelector(
+    (state: RootStateOrAny) => state.token
+  );
+
+  useEffect(() => {
+    if (checkToken === null) {
+      setisLoggedIn("false");
+    } else {
+      const token = checkToken.token;
+      const decoded: any = jwt_decode(token);
+      const date = new Date(decoded.exp * 1000) > new Date();
+      if (date) {
+        setisLoggedIn("true");
+      } else {
+        setisLoggedIn("false");
+        dispatch(deleteToken())
+      }
+    }
+  }, [checkToken, dispatch]);
+
+  function Greeting(props: any) {
+    const isLoggedIn = props.isLoggedIn;
+    if (isLoggedIn === "true") {
+      return <UserMenu />;
+    }
+    return (
+      <>
+        <SignIn />
+        <SignUp />
+      </>
+    );
+  }
 
   return (
     <header className="navbar">
       <div className="navbar__header container flex">
         <img className="navbar__logo" src="img/logo.png" alt="logo" />
         <div className="navbar__header--btn flex">
-          <SignIn />
-          <SignUp />
+          <Greeting isLoggedIn={isLoggedIn} />
           <ThemeSwitch />
         </div>
       </div>

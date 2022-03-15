@@ -82,11 +82,11 @@ export const loginUser = async (req, res) => {
         return res.json("Password is not correct");
       }
       const token = jwt.sign(
-        { userId: user._id, email: user.email },
+        { userId: user._id, email: user.email, role: user.role },
         JWT_SECRET, {expiresIn: '1h' }
       );
 
-      res.json({ token, user });
+      res.json({ token, userId: user._id, role: user.role });
     } else {
       res.json("User does not exsist, please register!");
     }

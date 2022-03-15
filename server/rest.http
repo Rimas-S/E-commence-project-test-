@@ -43,13 +43,13 @@ POST http://localhost:5000/api/v1/users/login
 content-type: application/json
 
 {
-    "email": "jonhdoe@gmail.com", 
-    "password": "abc12345"
+    "email": "bmw_x1@yahoo.com", 
+    "password": "72111984"
 }
 
 ###
 GET http://localhost:5000/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjJiZDVhMmQ1OGY3YzA1NmYyMzBmNTEiLCJlbWFpbCI6Impvbmhkb2VAZ21haWwuY29tIiwiaWF0IjoxNjQ3MDQxMDk2LCJleHAiOjE2NDcwNDQ2OTZ9.Jz1_mBcnaVYlLVbgJfdoWq5zo1odHqwcTPxuGDPPno0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjJmOGE3MGYzNTAwMWU1OGMyOTBjODkiLCJlbWFpbCI6ImJtd194MUB5YWhvby5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDcyODI4NjksImV4cCI6MTY0NzI4NjQ2OX0.1M7Ng_lhJtGYTacGy5GN8RszcMatWL8bZ3KHDF-8Bx0
 
 ###
 PUT http://localhost:5000/api/v1/users/622939975d2f588c48cfdf70

@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { saveToken } from "../../State/Redux/action";
 
 function Copyright(props: any) {
   return (
@@ -35,6 +37,7 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignIn() {
+  const dispatch = useDispatch();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,7 +49,8 @@ export default function SignIn() {
         password: data.get("password"),
       })
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
+        dispatch(saveToken(response.data))
       })
       .catch(function (error) {
         console.log(error);
