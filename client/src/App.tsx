@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import Shop from "./pages/Shop/Shop";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
+import Admin from "./pages/Users/Admin/Admin";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="shop" element={<Shop />} />
         <Route path="test" element={<Test />} />
+        <Route path="admin" element={<Admin />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
       </Routes>

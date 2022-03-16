@@ -11,7 +11,7 @@ import jwt_decode from "jwt-decode";
 import { deleteToken } from "../../State/Redux/action";
 
 const Navbar = () => {
-  const navbar = ["Home", "Shop", "Contact", "Test"];
+  const navbar = ["Home", "Shop", "Contact", "Test", "Admin"];
 
   const [isLoggedIn, setisLoggedIn] = useState("false");
 

@@ -8,6 +8,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -15,6 +16,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { saveToken } from "../../State/Redux/action";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props: any) {
   return (
@@ -37,6 +39,10 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignIn() {
+  const [message, setMessage] = React.useState("");
+
+  let navigate = useNavigate();
+
   const dispatch = useDispatch();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,13 +55,27 @@ export default function SignIn() {
         password: data.get("password"),
       })
       .then(function (response) {
-        console.log(response.data);
-        dispatch(saveToken(response.data))
+        if (response.data.token) {
+          dispatch(saveToken(response.data)); // save response in local storage
+          navigate("/", { replace: true }); // if success navigate to homepage
+        } else {
+          setMessage(response.data);
+        }
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error.message);
       });
   };
+
+  // error messages
+  const errorMessage = (message: String): any => {
+    if (message === "") {
+      return <></>;
+    } else {
+      return <Alert severity="error">{message}</Alert>;
+    }
+  };
+  //
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,7 +96,9 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <div>{errorMessage(message)}</div>
             <TextField
+              onChange={() => setMessage("")}
               margin="normal"
               required
               fullWidth
@@ -87,6 +109,7 @@ export default function SignIn() {
               autoFocus
             />
             <TextField
+              onChange={() => setMessage("")}
               margin="normal"
               required
               fullWidth

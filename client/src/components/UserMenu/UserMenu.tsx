@@ -11,6 +11,8 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteToken } from "../../State/Redux/action";
 
 // type UserMenuProps = {
 //     visibility: string
@@ -24,12 +26,11 @@ const UserMenu = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
 
-    const handlerLogout = () => {
-      console.log('close');
-      
-    }
-
+  const dispatch = useDispatch();
+  const handlerLogout = () => {
+    dispatch(deleteToken());
   };
   return (
     <React.Fragment>
@@ -102,9 +103,9 @@ const UserMenu = () => {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
-          <ListItemIcon >
-            <Logout fontSize="small"/>
+        <MenuItem onClick={handlerLogout}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
           </ListItemIcon>
           Logout
         </MenuItem>

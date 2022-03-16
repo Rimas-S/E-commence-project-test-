@@ -46,7 +46,7 @@ export default function SignUp() {
     } else if (status === "error") {
       return <Alert severity="error">{message}</Alert>;
     } else {
-      <Alert severity="success">ss</Alert>;
+      <Alert severity="error">Unknown error</Alert>;
     }
   };
   // 
