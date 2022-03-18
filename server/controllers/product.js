@@ -1,20 +1,33 @@
+import product from "../models/product.js";
 import Product from "../models/product.js";
 import ProductService from "../services/product.js";
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, size, quantity } = req.body;
+    const { name, price, size, color, image, quantity } = req.body;
 
     const product = new Product({
       name,
       price,
       size,
+      color,
+      image,
       quantity,
     });
+
+    const isProductExist = await ProductService.findUserByName(name);
+    if (isProductExist)
+      return res.json({ error: `${name} exist in the database!` });
+
+    console.log(product);
+
     await ProductService.create(product);
-    res.json(product);
+    res.json({ success: "Successfully saved.", productId: product._id });
   } catch (err) {
     console.log(err);
+    res.json({
+      error: err.message,
+    });
   }
 };
 

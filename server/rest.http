@@ -2,21 +2,20 @@ POST http://localhost:5000/api/v1/products
 content-type: application/json
 
 {
-    "name": "product test 12",
+    "name": "product test 23",
     "price": 20.5,
-    "size": ["X", "XL", "S", "M"],
-    "quantity": 10
+    "color": "red",
+    "size": "X",
+    "quantity": 10,
+    "image": ["dfgdgfg", "fggffgfgfg"]
 }
 
 ###
-PUT http://localhost:5000/api/v1/products/621ea04b91325c3d3eee13ee
+PUT http://localhost:5000/api/v1/products/6233c36f6c2e22b89f120449
 content-type: application/json
 
 {
-    "name": "product test2",
-    "price": 35,
-    "size": ["X", "XS", "XL", "S"],
-    "quantity": 5
+    "image": ["dfgdgfg", "fggffgfgfg"]
 }
 
 ###
