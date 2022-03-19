@@ -19,8 +19,6 @@ export const createProduct = async (req, res) => {
     if (isProductExist)
       return res.json({ error: `${name} exist in the database!` });
 
-    console.log(product);
-
     await ProductService.create(product);
     res.json({ success: "Successfully saved.", productId: product._id });
   } catch (err) {

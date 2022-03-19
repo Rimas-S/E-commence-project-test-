@@ -1,13 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 
-import "./App.scss";
 import Navbar from "./components/Navbar/Navbar";
-import Test from "./pages/Admin/Test";
+import Test from "./pages/Test/Test";
 import Home from "./pages/Home/Home";
 import Shop from "./pages/Shop/Shop";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Admin from "./pages/Users/Admin/Admin";
+
+import "./App.scss";
 
 function App() {
   return (

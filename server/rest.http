@@ -2,7 +2,7 @@ POST http://localhost:5000/api/v1/products
 content-type: application/json
 
 {
-    "name": "product test 23",
+    "name": "product test 33",
     "price": 20.5,
     "color": "red",
     "size": "X",
@@ -11,11 +11,11 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:5000/api/v1/products/6233c36f6c2e22b89f120449
+PUT http://localhost:5000/api/v1/products/6234d0a4987ef34223dc92d3
 content-type: application/json
 
 {
-    "image": ["dfgdgfg", "fggffgfgfg"]
+    "quantity": 11
 }
 
 ###
