@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import "./App.scss";
 
 import Navbar from "./components/Navbar/Navbar";
 import Test from "./pages/Test/Test";
@@ -8,7 +9,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Admin from "./pages/Users/Admin/Admin";
 
-import "./App.scss";
+
 
 function App() {
   return (
