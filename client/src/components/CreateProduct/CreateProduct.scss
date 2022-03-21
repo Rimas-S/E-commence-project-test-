@@ -14,7 +14,7 @@ $small-screen: 700px;
   }
 
   &__item {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     padding-bottom: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -51,6 +51,10 @@ $small-screen: 700px;
       input {
         font-size: inherit;
       }
+    }
+    .describtion {
+      height: 100px;
+      padding: 0.3rem;
     }
 
     &--submit {

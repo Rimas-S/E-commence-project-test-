@@ -11,11 +11,11 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:5000/api/v1/products/6234d0a4987ef34223dc92d3
+PUT http://localhost:5000/api/v1/products/623530fd987ef34223dc93c4
 content-type: application/json
 
 {
-    "quantity": 11
+    "describtion": ""
 }
 
 ###
@@ -48,7 +48,7 @@ content-type: application/json
 
 ###
 GET http://localhost:5000/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjJmOGE3MGYzNTAwMWU1OGMyOTBjODkiLCJlbWFpbCI6ImJtd194MUB5YWhvby5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDcyODI4NjksImV4cCI6MTY0NzI4NjQ2OX0.1M7Ng_lhJtGYTacGy5GN8RszcMatWL8bZ3KHDF-8Bx0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjJmOGE3MGYzNTAwMWU1OGMyOTBjODkiLCJlbWFpbCI6ImJtd194MUB5YWhvby5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDc2OTcxMzEsImV4cCI6MTY0NzcwMDczMX0.euGiEVNiNw5HhxLrf2VDWCnH_9lj4d-j9GLtDDcJTTY
 
 ###
 PUT http://localhost:5000/api/v1/users/622939975d2f588c48cfdf70

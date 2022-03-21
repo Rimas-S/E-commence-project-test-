@@ -5,20 +5,19 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { deleteToken } from "../../State/Redux/action";
 
-// type UserMenuProps = {
-//     visibility: string
-// }
-
 const UserMenu = () => {
+  // Navigation
+  const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -31,11 +30,22 @@ const UserMenu = () => {
   const dispatch = useDispatch();
   const handlerLogout = () => {
     dispatch(deleteToken());
+    navigate("/");
   };
+
+  // Admin role setup
+  const [role, setRole] = React.useState("user");
+
+  const token = useSelector((state: RootStateOrAny) => state.token);
+  useEffect(() => {
+    if (token) {
+      setRole(token.role);
+    }
+  }, [token]);
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Typography sx={{ minWidth: 100 }}>Profile</Typography>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -90,6 +100,15 @@ const UserMenu = () => {
         <MenuItem>
           <Avatar /> My account
         </MenuItem>
+        {role === "admin" ? (
+          <MenuItem
+            onClick={() => {
+              navigate("/admin");
+            }}
+          >
+            <Avatar /> Admin
+          </MenuItem>
+        ) : null}
         <Divider />
         <MenuItem>
           <ListItemIcon>

@@ -22,10 +22,13 @@ const CreateProduct = () => {
     color: "",
     image: [""],
     quantity: 0,
+    describtion: "",
   };
 
   // saving data in database
   const postProduct = (value: any) => {
+    console.log(value);
+    
     axios
       .post("http://localhost:5000/api/v1/products", value)
       .then(function (response) {
@@ -68,8 +71,11 @@ const CreateProduct = () => {
             initialValues={initialValues}
             validationSchema={productSchema}
             onSubmit={async (value, { resetForm }) => {
+              console.log(value.image);
+              
               const stringImage = await fileToStringArray(value.image);
               value.image = stringImage;
+              console.log(value.image);
               postProduct(value);
             }}
           >
@@ -85,11 +91,10 @@ const CreateProduct = () => {
                     name="name"
                     placeholder="T-Shirt"
                   />
-                  {errors.name && touched.name ? (
-                    <div className="product-form__item--errors">
-                      {errors.name}
-                    </div>
-                  ) : null}
+                  <ErrorMessage
+                    name="name"
+                    render={(msg) => <Alert severity="error">{msg}</Alert>}
+                  />
                 </div>
 
                 <div className="product-form__item">
@@ -162,6 +167,26 @@ const CreateProduct = () => {
                 </div>
 
                 <div className="product-form__item">
+                  <label
+                    className="product-form__item--label"
+                    htmlFor="describtion"
+                  >
+                    Describtion
+                  </label>
+                  <Field
+                    component="textarea"
+                    placeholder="Detail of product..."
+                    className="product-form__item--field describtion"
+                    id="describtion"
+                    name="describtion"
+                  />
+                  <ErrorMessage
+                    name="describtion"
+                    render={(msg) => <Alert severity="error">{msg}</Alert>}
+                  />
+                </div>
+
+                <div className="product-form__item">
                   <FieldArray name="image">
                     {({ push, remove }) => (
                       <>
@@ -182,7 +207,12 @@ const CreateProduct = () => {
                               id="image"
                               onChange={(e: any) => {
                                 let imageFile = e.currentTarget.files[0];
-                                setFieldValue(`image[${index}]`, imageFile); // extra part for validating ang error show
+                                console.log(imageFile);
+                                if (imageFile !== undefined){
+                                  setFieldValue(`image[${index}]`, imageFile);
+                                 } else {
+                                  setFieldValue(`image[${index}]`, "");
+                                 }
                               }}
                             />
                             <AddIcon

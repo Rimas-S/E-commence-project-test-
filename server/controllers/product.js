@@ -4,13 +4,14 @@ import ProductService from "../services/product.js";
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, size, color, image, quantity } = req.body;
+    const { name, price, size, color, describtion, image, quantity } = req.body;
 
     const product = new Product({
       name,
       price,
       size,
       color,
+      describtion,
       image,
       quantity,
     });
