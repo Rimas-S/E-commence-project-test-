@@ -1,12 +1,14 @@
-import { Button, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
+import { Link } from "react-router-dom";
 import "./NavbarAdmin.scss";
 
 const NavbarAdmin = () => {
   return (
     <div className="navbar-admin">
       <div className="container navbar-admin__main">
-        <Paper className="navbar-admin__main--paper" elevation={8}>
-          <Button >Primary</Button>
+        <Paper className="navbar-admin__main--paper" elevation={8}>           
+          <Link to="/admin/createproduct">Create Product</Link>
+          <Link to="/admin/updateproduct">Update Product</Link>
         </Paper>
       </div>
     </div>

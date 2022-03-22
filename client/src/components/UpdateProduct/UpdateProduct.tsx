@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Alert, Button } from "@mui/material";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 
-import "./CreateProduct.scss";
+import "./UpdateProduct.scss";
 
 import MySnackbar from "../Snackbar/MyScanckbar";
 import { fileToStringArray } from "../../services/services";
@@ -13,9 +13,8 @@ import { productSchema } from "./ProductSchema";
 
 const CreateProduct = () => {
   const [successAndError, setSuccessAndError] = React.useState({});
-
-  // Initial values
-  const initialValues = {
+  const [productById, setProductById] = React.useState<any>({});
+  const [initialValues, setInitialValues] = React.useState({
     name: "",
     price: 0,
     size: "",
@@ -23,20 +22,76 @@ const CreateProduct = () => {
     image: [""],
     quantity: 0,
     describtion: "",
+  });
+  const id = "6237ec0bbcceabebbe14a9f4";
+
+  // get product by id
+  const getProduct = (id: string) => {
+    axios
+      .get(`http://localhost:5000/api/v1/products/${id}`)
+      .then(function (response) {
+        // handle success
+        setProductById(response.data);
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
   };
 
-  // saving data in database
-  const postProduct = (value: any) => {
+  useEffect(() => {
+    getProduct(id);
+  }, [id]);
+  console.log(productById);
+  //
+
+  // update data in database
+  const updateProduct = (value: any) => {
+    console.log(value);
+
     axios
-      .post("http://localhost:5000/api/v1/products", value)
+      .put(`http://localhost:5000/api/v1/products/${id}`, value)
       .then(function (response) {
         setSuccessAndError(response.data);
+        console.log(response);
       })
       .catch(function (error) {
         setSuccessAndError({ error: error.message });
         console.log(error);
       });
   };
+
+  // Initial values
+  useEffect(() => {
+    if (productById.name) {
+      const { name, price, size, color, image, quantity, describtion } =
+        productById;
+      setInitialValues({
+        name,
+        price,
+        size,
+        color,
+        image,
+        quantity,
+        describtion,
+      });
+    }
+  }, [productById]);
+
+  //   if (productById.name) {
+  //     setInitialValues({
+  //       name: productById.name,
+  //       price: productById.price,
+  //       size: productById.size,
+  //       color: productById.color,
+  //       image: productById.image,
+  //       quantity: productById.quantity,
+  //       describtion: productById.describtion,
+  //     });
+  //   }
+
+  console.log(initialValues);
 
   // error/success function
   const successAndErrorInfo = (successAndError: any) => {
@@ -62,16 +117,17 @@ const CreateProduct = () => {
   return (
     <div className="product-form">
       <div className="product-form__main container flex">
-        <h3 className="product-form__title">Create Product</h3>
+        <h3 className="product-form__title">Update Product</h3>
         <div className="product-form__body">
           <Formik
+            enableReinitialize={true}
             initialValues={initialValues}
             validationSchema={productSchema}
             onSubmit={async (value, { resetForm }) => {
               const stringImage = await fileToStringArray(value.image);
               value.image = stringImage;
-              postProduct(value);
-              resetForm();
+
+              updateProduct(value);
             }}
           >
             {({ values, setFieldValue, errors, touched }) => (

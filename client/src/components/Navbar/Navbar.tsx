@@ -31,7 +31,7 @@ const Navbar = () => {
         setisLoggedIn("true");
       } else {
         setisLoggedIn("false");
-        dispatch(deleteToken())
+        dispatch(deleteToken());
       }
     }
   }, [checkToken, dispatch]);
@@ -52,7 +52,7 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="navbar__header container flex">
-        <img className="navbar__logo" src="img/logo.png" alt="logo" />
+        <img className="navbar__logo" src="/img/logo.png" alt="logo" />
         <div className="navbar__header--btn flex">
           <Greeting isLoggedIn={isLoggedIn} />
           <ThemeSwitch />

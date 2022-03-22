@@ -8,8 +8,8 @@ import Shop from "./pages/Shop/Shop";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Admin from "./pages/Users/Admin/Admin";
-
-
+import CreateProduct from "./components/CreateProduct/CreateProduct";
+import UpdateProduct from "./components/UpdateProduct/UpdateProduct";
 
 function App() {
   return (
@@ -20,7 +20,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="shop" element={<Shop />} />
         <Route path="test" element={<Test />} />
-        <Route path="admin" element={<Admin />} />
+        <Route path="admin" element={<Admin />}>
+          <Route path="createproduct" element={<CreateProduct />} />
+          <Route path="updateproduct" element={<UpdateProduct />} />
+        </Route>
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
       </Routes>

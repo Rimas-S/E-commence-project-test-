@@ -11,15 +11,19 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:5000/api/v1/products/623530fd987ef34223dc93c4
+PUT http://localhost:5000/api/v1/products/6238f4cc48385c5fdbb6a25a
 content-type: application/json
 
 {
-    "describtion": ""
+    "image": [""],
+    "describtion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi felis ante, ornare et dignissim sed, cursus ut dolor. Maecenas in gravida purus, a vestibulum metus. Integer tincidunt rutrum velit, vitae condimentum erat pharetra sed. Vivamus tempor nunc id commodo sollicitudin."
 }
 
 ###
 GET http://localhost:5000/api/v1/products
+
+###
+GET http://localhost:5000/api/v1/products/623530fd987ef34223dc93c4
 
 ###
 DELETE http://localhost:5000/api/v1/products/621fb947a0f7e4b268a85ddf

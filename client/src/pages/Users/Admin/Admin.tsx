@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { RootStateOrAny, useSelector } from "react-redux";
-import CreateProduct from "../../../components/CreateProduct/CreateProduct";
+import { Link, Outlet } from "react-router-dom";
 import NavbarAdmin from "../../../components/NavbarAdmin/NavbarAdmin";
 import "./Admin.scss";
 
@@ -19,10 +19,10 @@ const Admin = () => {
       {role === "admin" ? (
         <>
           <NavbarAdmin />
-          <CreateProduct />
+          <Outlet />
         </>
       ) : (
-        <div>You are not Admin!</div>
+        <div><p>You are not Admin!</p><Link to="/signin">Log in</Link></div>
       )}
     </>
   );

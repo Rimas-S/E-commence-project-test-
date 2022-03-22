@@ -1,8 +1,13 @@
 import Product from "../models/product.js";
 
 
-const findUserByName = async (name) => {
+const findProductByName = async (name) => {
   const product = await Product.findOne({ name });
+  return product;
+};
+
+const findProductById = async (id) => {
+  const product = await Product.findById(id);
   return product;
 };
 
@@ -28,5 +33,6 @@ export default {
   findAllData,
   updateProduct,
   deleteProduct,
-  findUserByName,
+  findProductByName,
+  findProductById,
 };
