@@ -1,6 +1,10 @@
 $small-screen: 700px;
 
 .product-form {
+  .icon {
+    cursor: pointer;
+  }
+
   padding-top: 2rem;
   color: var(--mainFontColor);
 
@@ -37,7 +41,6 @@ $small-screen: 700px;
 
       .icon {
         vertical-align: middle;
-        cursor: pointer;
       }
 
       .add {
@@ -60,5 +63,15 @@ $small-screen: 700px;
     &--submit {
       grid-column: 1 / span 2;
     }
+
+    &--image {
+      height: 150px;
+    }
+  }
+
+  .image__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 }

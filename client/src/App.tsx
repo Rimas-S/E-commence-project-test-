@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Admin from "./pages/Users/Admin/Admin";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import UpdateProduct from "./components/UpdateProduct/UpdateProduct";
+import ProductList from "./components/ProductList/ProductList";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="admin" element={<Admin />}>
           <Route path="createproduct" element={<CreateProduct />} />
           <Route path="updateproduct" element={<UpdateProduct />} />
+          <Route path="productlist" element={<ProductList />} />
         </Route>
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />

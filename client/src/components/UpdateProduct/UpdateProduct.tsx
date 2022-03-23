@@ -11,7 +11,7 @@ import MySnackbar from "../Snackbar/MyScanckbar";
 import { fileToStringArray } from "../../services/services";
 import { productSchema } from "./ProductSchema";
 
-const CreateProduct = () => {
+const UpdateProduct = () => {
   const [successAndError, setSuccessAndError] = React.useState({});
   const [productById, setProductById] = React.useState<any>({});
   const [initialValues, setInitialValues] = React.useState({
@@ -23,19 +23,25 @@ const CreateProduct = () => {
     quantity: 0,
     describtion: "",
   });
-  const id = "6237ec0bbcceabebbe14a9f4";
+  const [currentImages, setCurrentImages] = React.useState<any>([""]);
+
+  useEffect(() => {
+    if (productById.image) setCurrentImages(productById.image);
+  }, [productById.image]);
+
+  const id = "623530fd987ef34223dc93c4";
 
   // get product by id
   const getProduct = (id: string) => {
     axios
       .get(`http://localhost:5000/api/v1/products/${id}`)
       .then(function (response) {
-        // handle success
         setProductById(response.data);
+        setSuccessAndError(response.data);
         console.log(response.data);
       })
       .catch(function (error) {
-        // handle error
+        setSuccessAndError({ error: error.message });
         console.log(error);
       });
   };
@@ -43,7 +49,6 @@ const CreateProduct = () => {
   useEffect(() => {
     getProduct(id);
   }, [id]);
-  console.log(productById);
   //
 
   // update data in database
@@ -65,33 +70,18 @@ const CreateProduct = () => {
   // Initial values
   useEffect(() => {
     if (productById.name) {
-      const { name, price, size, color, image, quantity, describtion } =
-        productById;
+      const { name, price, size, color, quantity, describtion } = productById;
       setInitialValues({
         name,
         price,
         size,
         color,
-        image,
+        image: [""],
         quantity,
         describtion,
       });
     }
   }, [productById]);
-
-  //   if (productById.name) {
-  //     setInitialValues({
-  //       name: productById.name,
-  //       price: productById.price,
-  //       size: productById.size,
-  //       color: productById.color,
-  //       image: productById.image,
-  //       quantity: productById.quantity,
-  //       describtion: productById.describtion,
-  //     });
-  //   }
-
-  console.log(initialValues);
 
   // error/success function
   const successAndErrorInfo = (successAndError: any) => {
@@ -114,6 +104,13 @@ const CreateProduct = () => {
     }
   };
 
+  // image delete handler
+  function handlerImageDelete(index: number) {
+    currentImages.splice(index, 1);
+    const newImage = [...currentImages];
+    setCurrentImages(newImage);
+  }
+
   return (
     <div className="product-form">
       <div className="product-form__main container flex">
@@ -125,13 +122,24 @@ const CreateProduct = () => {
             validationSchema={productSchema}
             onSubmit={async (value, { resetForm }) => {
               const stringImage = await fileToStringArray(value.image);
-              value.image = stringImage;
+              value.image = [...stringImage, ...currentImages];
+
+              value.image = value.image.filter(function (ele) {
+                return ele !== "";
+              });
 
               updateProduct(value);
             }}
           >
             {({ values, setFieldValue, errors, touched }) => (
               <Form>
+                <div className="product-form__item">
+                  <label className="product-form__item--label">
+                    Product Id
+                  </label>
+                  <div className="product-form__item--field">{id}</div>
+                </div>
+
                 <div className="product-form__item">
                   <label className="product-form__item--label" htmlFor="name">
                     Product name
@@ -292,6 +300,28 @@ const CreateProduct = () => {
                     )}
                   </FieldArray>
                 </div>
+                {currentImages === "" ? (
+                  <></>
+                ) : (
+                  <div className="product-form__item image__grid">
+                    {currentImages.map((image: string, index: number) => (
+                      <div key={index}>
+                        <img
+                          className="product-form__item--image"
+                          src={image}
+                          alt=""
+                        />
+                        <RemoveIcon
+                          className="icon"
+                          type="button"
+                          onClick={() => {
+                            handlerImageDelete(index);
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 <div className="product-form__item">
                   <Button
@@ -312,4 +342,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default UpdateProduct;
