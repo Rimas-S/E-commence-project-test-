@@ -3,5 +3,10 @@
         &--paper {
             padding: 0.8rem 0.5rem;
         }
+
+        &--link {
+            text-decoration: none;
+            color: var(--mainFontColor);
+        }
     }
 }

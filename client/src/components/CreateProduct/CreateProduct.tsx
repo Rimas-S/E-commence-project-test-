@@ -189,7 +189,7 @@ const CreateProduct = () => {
                           className="product-form__item--label"
                           htmlFor="image"
                         >
-                          Image
+                          Upload image
                         </label>
                         {values.image.map((im, index) => (
                           <div

@@ -1,9 +1,27 @@
 import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+const useStyles = makeStyles({
+  root: {
+    "&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus":
+      {
+        outline: "none !important",
+      },
+    "&.css-1fajery-MuiDataGrid-root .MuiDataGrid-cell:focus-within, &.css-1fajery-MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within":
+      {
+        outline: "none !important",
+      },
+  },
+});
 
 const ProductList = () => {
+  const navigate = useNavigate();
+  const classes = useStyles();
+
   let productRow;
   const [data, setData] = React.useState<any>();
 
@@ -18,26 +36,24 @@ const ProductList = () => {
       width: 90,
     },
     {
-        field: "quantity",
-        headerName: "Quantity",
-        type: "number",
-        width: 90,
-      },
+      field: "quantity",
+      headerName: "Quantity",
+      type: "number",
+      width: 90,
+    },
     {
       field: "Action",
       sortable: false,
       filterable: false,
+      hideable: false,
       renderCell: (cellValues) => {
         return (
           <Button
-            variant="contained"
-            color="primary"
+            variant="outlined"
+            color="success"
             onClick={() => {
-              console.log(cellValues);
+              navigate(`/admin/updateproduct/${cellValues.row.id}`);
             }}
-            //   onClick={(event) => {
-            //     handleClick(event, cellValues);
-            //   }}
           >
             edit
           </Button>
@@ -62,10 +78,16 @@ const ProductList = () => {
 
   if (data) {
     productRow = data.map((el: any) => {
-      return { id: el._id, name: el.name, color: el.color, price: el.price, quantity: el.quantity };
+      return {
+        id: el._id,
+        name: el.name,
+        color: el.color,
+        price: el.price,
+        quantity: el.quantity,
+      };
     });
   } else {
-    productRow = [{ id: ""}];
+    productRow = [{ id: "" }];
   }
 
   const rows = productRow;
@@ -75,14 +97,18 @@ const ProductList = () => {
       {data === undefined ? (
         ""
       ) : (
-        <div className="container" style={{ height: 400, width: "100%", marginTop: "2rem" }}>
+        <div
+          className="container"
+          style={{ height: 400, width: "100%", marginTop: "2rem" }}
+        >
           <DataGrid
+            className={classes.root}
             rows={rows}
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
             hideFooterSelectedRowCount={true}
-            
+
             // checkboxSelection
           />
         </div>

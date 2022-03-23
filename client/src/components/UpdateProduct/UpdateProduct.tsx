@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Alert, Button } from "@mui/material";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 
@@ -10,6 +11,7 @@ import "./UpdateProduct.scss";
 import MySnackbar from "../Snackbar/MyScanckbar";
 import { fileToStringArray } from "../../services/services";
 import { productSchema } from "./ProductSchema";
+import { useParams } from "react-router-dom";
 
 const UpdateProduct = () => {
   const [successAndError, setSuccessAndError] = React.useState({});
@@ -29,10 +31,14 @@ const UpdateProduct = () => {
     if (productById.image) setCurrentImages(productById.image);
   }, [productById.image]);
 
-  const id = "623530fd987ef34223dc93c4";
+  // const a = useParams()
+  // console.log(a.id);
+  
+
+  const {id} = useParams();
 
   // get product by id
-  const getProduct = (id: string) => {
+  const getProduct = (id: string | undefined) => {
     axios
       .get(`http://localhost:5000/api/v1/products/${id}`)
       .then(function (response) {
@@ -253,7 +259,7 @@ const UpdateProduct = () => {
                           className="product-form__item--label"
                           htmlFor="image"
                         >
-                          Image
+                          Upload image
                         </label>
                         {values.image.map((im, index) => (
                           <div
@@ -300,18 +306,18 @@ const UpdateProduct = () => {
                     )}
                   </FieldArray>
                 </div>
-                {currentImages === "" ? (
+                {currentImages[0] === "" ? (
                   <></>
                 ) : (
-                  <div className="product-form__item image__grid">
+                  <div className="product-form__item image__flex">
                     {currentImages.map((image: string, index: number) => (
-                      <div key={index}>
+                      <div className="product-form__item--image-wrapper" key={index}>
                         <img
                           className="product-form__item--image"
                           src={image}
                           alt=""
                         />
-                        <RemoveIcon
+                        <DeleteForeverIcon
                           className="icon"
                           type="button"
                           onClick={() => {
