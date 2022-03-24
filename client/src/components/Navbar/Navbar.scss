@@ -35,7 +35,7 @@
       transition: text-shadow 0.3s;
 
       &:hover {
-        text-shadow: 0 0 4px #fff, 0 0 4px #fff;
+        text-shadow: 0 0 4px var(--headerFontColor), 0 0 4px var(--headerFontColor);
       }
     }
   }

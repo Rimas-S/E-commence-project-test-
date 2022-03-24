@@ -236,7 +236,7 @@ const UpdateProduct = () => {
                     className="product-form__item--label"
                     htmlFor="describtion"
                   >
-                    Describtion
+                    Description
                   </label>
                   <Field
                     component="textarea"

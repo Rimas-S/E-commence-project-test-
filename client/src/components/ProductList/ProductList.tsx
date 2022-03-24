@@ -29,6 +29,7 @@ const ProductList = () => {
     { field: "id", headerName: "ID", width: 250 },
     { field: "name", headerName: "Product name", width: 200 },
     { field: "color", headerName: "Color", width: 100 },
+    { field: "describtion", headerName: "Description", flex: 100, },
     {
       field: "price",
       headerName: "Price",
@@ -84,6 +85,7 @@ const ProductList = () => {
         color: el.color,
         price: el.price,
         quantity: el.quantity,
+        describtion: el.describtion
       };
     });
   } else {
@@ -108,6 +110,7 @@ const ProductList = () => {
             pageSize={5}
             rowsPerPageOptions={[5]}
             hideFooterSelectedRowCount={true}
+            autoHeight={true}
 
             // checkboxSelection
           />

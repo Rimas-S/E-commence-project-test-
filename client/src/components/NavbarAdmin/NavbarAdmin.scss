@@ -1,12 +1,19 @@
 .navbar-admin {
-    &__main {
-        &--paper {
-            padding: 0.8rem 0.5rem;
-        }
-
-        &--link {
-            text-decoration: none;
-            color: var(--mainFontColor);
-        }
+  &__main {
+    &--paper {
+      padding: 0.8rem 0.5rem;
     }
+
+    &--link {
+      text-decoration: none;
+      color: var(--mainFontColor);
+      margin: 0 1rem;
+
+      transition: text-shadow 0.3s;
+
+      &:hover {
+        text-shadow: 0 0 1.3px var(--mainFontColor), 0 0 1.3px var(--mainFontColor);
+      }
+    }
+  }
 }
