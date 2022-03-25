@@ -1,37 +1,36 @@
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-
+import MyCarousel from "../../Carousel/Carousel";
 import "./ProductCard.scss";
 
-const ProductCard = (props: any) => {
-  const imageDB = props.image;
+type ProductCardProps = {
+  images: string[];
+  price: number;
+  title: string;
+};
 
+const ProductCard = ({ images, price, title }: ProductCardProps) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="250"
-        image={imageDB}
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <div className="product-card">
+      <div className="product-card__image">
+        <MyCarousel images={images} />
+      </div>
+
+      <h3 className="product-card__price">
+        <span>&#8364;</span>
+        {price}
+      </h3>
+
+      <h3 className="product-card__title">{title}</h3>
+
+      <div className="product-card__buttons">
+        <Button color="secondary" variant="outlined">
+          Detail
+        </Button>
+        <Button color="success" variant="outlined">
+          Buy
+        </Button>
+      </div>
+    </div>
   );
 };
 

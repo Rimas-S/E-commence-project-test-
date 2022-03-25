@@ -66,9 +66,8 @@ const ProductList = () => {
   React.useEffect(() => {
     axios
       .get("http://localhost:5000/api/v1/products")
-      .then(async function (response) {
+      .then(function (response) {
         // handle success
-        console.log(response.data);
         setData(response.data);
       })
       .catch(function (error) {

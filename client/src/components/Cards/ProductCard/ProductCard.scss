@@ -1,0 +1,10 @@
+.product-card {
+    border: solid 2px;
+  &__image {
+    height: 250px;
+    width: 250px;
+  }
+  .my-carousel .w-100 {
+    height: 250px;
+}
+}

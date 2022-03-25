@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import "./Test.scss";
 
 interface Data {
@@ -86,7 +85,7 @@ const Test = () => {
         </div>
       ))} */}
 
-      <ProductCard image={test} />
+      
     </div>
   );
 };
