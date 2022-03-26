@@ -202,7 +202,6 @@ const CreateProduct = () => {
                               id="image"
                               onChange={(e: any) => {
                                 let imageFile = e.currentTarget.files[0];
-                                console.log(imageFile);
                                 if (imageFile !== undefined) {
                                   setFieldValue(`image[${index}]`, imageFile);
                                 } else {

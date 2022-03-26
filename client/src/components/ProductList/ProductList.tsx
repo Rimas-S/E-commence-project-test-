@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import MySnackbar from "../Snackbar/MyScanckbar";
 
 const useStyles = makeStyles({
   root: {
@@ -21,6 +22,9 @@ const useStyles = makeStyles({
 const ProductList = () => {
   const navigate = useNavigate();
   const classes = useStyles();
+  const [pageSize, setPageSize] = React.useState<number>(5);
+  const [deletedData, setDeletedData] = React.useState<string>("");
+  const [successAndError, setSuccessAndError] = React.useState({});
 
   let productRow;
   const [data, setData] = React.useState<any>();
@@ -29,7 +33,7 @@ const ProductList = () => {
     { field: "id", headerName: "ID", width: 250 },
     { field: "name", headerName: "Product name", width: 200 },
     { field: "color", headerName: "Color", width: 100 },
-    { field: "describtion", headerName: "Description", flex: 100, },
+    { field: "describtion", headerName: "Description", flex: 100 },
     {
       field: "price",
       headerName: "Price",
@@ -44,24 +48,55 @@ const ProductList = () => {
     },
     {
       field: "Action",
+      width: 170,
       sortable: false,
       filterable: false,
       hideable: false,
       renderCell: (cellValues) => {
         return (
-          <Button
-            variant="outlined"
-            color="success"
-            onClick={() => {
-              navigate(`/admin/updateproduct/${cellValues.row.id}`);
-            }}
-          >
-            edit
-          </Button>
+          <>
+            <Button
+              variant="outlined"
+              color="success"
+              onClick={() => {
+                navigate(`/admin/updateproduct/${cellValues.row.id}`);
+              }}
+            >
+              edit
+            </Button>
+            <Button
+              sx={{ marginLeft: 1 }}
+              variant="outlined"
+              color="secondary"
+              onClick={() => {
+                handlerDeleteProduct(cellValues.row.id);
+              }}
+            >
+              delete
+            </Button>
+          </>
         );
       },
     },
   ];
+
+  // Delete pruduct handler
+
+  const handlerDeleteProduct = (id: string) => {
+    axios
+      .delete(`http://localhost:5000/api/v1/products/${id}`)
+      .then(function (response) {
+        // handle success
+        setDeletedData(response.data);
+        setSuccessAndError(response.data);
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        setSuccessAndError({ error: error.message });
+        console.log(error);
+      });
+  };
 
   React.useEffect(() => {
     axios
@@ -74,7 +109,7 @@ const ProductList = () => {
         // handle error
         console.log(error);
       });
-  }, []);
+  }, [deletedData]);
 
   if (data) {
     productRow = data.map((el: any) => {
@@ -84,7 +119,7 @@ const ProductList = () => {
         color: el.color,
         price: el.price,
         quantity: el.quantity,
-        describtion: el.describtion
+        describtion: el.describtion,
       };
     });
   } else {
@@ -92,6 +127,27 @@ const ProductList = () => {
   }
 
   const rows = productRow;
+
+  // error/success function
+  const successAndErrorInfo = (successAndError: any) => {
+    if (successAndError._id) {
+      return (
+        <MySnackbar
+          status="success"
+          message={`Product with id ${successAndError._id} is deleted!`}
+          setSuccessAndError={setSuccessAndError}
+        />
+      );
+    } else if (successAndError.error) {
+      return (
+        <MySnackbar
+          status="error"
+          message={successAndError.error}
+          setSuccessAndError={setSuccessAndError}
+        />
+      );
+    }
+  };
 
   return (
     <>
@@ -106,15 +162,15 @@ const ProductList = () => {
             className={classes.root}
             rows={rows}
             columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            rowsPerPageOptions={[5, 10, 20]}
             hideFooterSelectedRowCount={true}
             autoHeight={true}
-
-            // checkboxSelection
           />
         </div>
       )}
+      {successAndErrorInfo(successAndError)}
     </>
   );
 };

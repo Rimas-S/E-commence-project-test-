@@ -26,7 +26,7 @@ GET http://localhost:5000/api/v1/products
 GET http://localhost:5000/api/v1/products/623530fd987ef34223dc93c4
 
 ###
-DELETE http://localhost:5000/api/v1/products/621fb947a0f7e4b268a85ddf
+DELETE http://localhost:5000/api/v1/products/6237ec0bbcceabebbe14a9f4
 
 ###
 POST http://localhost:5000/api/v1/users

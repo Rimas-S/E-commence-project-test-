@@ -58,6 +58,7 @@ export const deleteProduct = async (req, res) => {
 
     res.json(await ProductService.deleteProduct(_id));
   } catch (err) {
+    res.json({error: err.message});
     console.log(err);
   }
 };
