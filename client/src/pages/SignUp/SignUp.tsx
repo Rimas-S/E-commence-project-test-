@@ -3,17 +3,18 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+import MenuItem from "@mui/material/MenuItem";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Alert from "@mui/material/Alert";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+
+import { countries } from "../../data/countries";
+import MySnackbar from "../../components/Snackbar/MyScanckbar";
 
 function Copyright(props: any) {
   return (
@@ -36,25 +37,35 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const [status, setStatus] = React.useState("");
-  const [message, setMessage] = React.useState("");
+  const [country, setCountry] = React.useState("");
+  const [successAndError, setSuccessAndError] = React.useState({});
 
-  // function for successfull/error alert
-  const successMessage = (status: String, message: String): any => {
-    if (status === "success") {
-      return <Alert severity="success">{message}</Alert>;
-    } else if (status === "error") {
-      return <Alert severity="error">{message}</Alert>;
-    } else {
-      <Alert severity="error">Unknown error</Alert>;
+  // error/success function
+  const successAndErrorInfo = (successAndError: any) => {
+    if (successAndError.success) {
+      return (
+        <MySnackbar
+          status="success"
+          message={successAndError.success}
+          setSuccessAndError={setSuccessAndError}
+        />
+      );
+    } else if (successAndError.error) {
+      return (
+        <MySnackbar
+          status="error"
+          message={successAndError.error}
+          setSuccessAndError={setSuccessAndError}
+        />
+      );
     }
   };
-  // 
 
   // Form submit handler
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
     // eslint-disable-next-line no-console
 
     axios
@@ -65,22 +76,29 @@ export default function SignUp() {
         email: data.get("email"),
         password: data.get("password"),
         address: data.get("address"),
+        country: data.get("counrty"),
+        city: data.get("city"),
+        phone: Number(data.get("mobil")),
       })
       .then(function (response) {
         if (response.data.error) {
-          setMessage(response.data.error);
-          setStatus("error");
+          setSuccessAndError(response.data);
         }
 
         if (response.data.success) {
-          setMessage(response.data.success);
-          setStatus("success");
+          setSuccessAndError(response.data);
         }
         console.log(response.data);
       })
       .catch(function (error) {
+        setSuccessAndError({ error: error.message });
         console.log(error);
       });
+  };
+
+  // country select handler
+  const handleChangeCountry = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCountry(event.target.value);
   };
 
   return (
@@ -104,9 +122,7 @@ export default function SignUp() {
 
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <div>{successMessage(status, message)}</div>
-              </Grid>
+              {successAndErrorInfo(successAndError)}
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
@@ -149,6 +165,43 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  autoComplete="city"
+                  name="city"
+                  fullWidth
+                  id="city"
+                  label="City"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={7}>
+                <TextField
+                  type="number"
+                  fullWidth
+                  id="mobil"
+                  label="Mobil"
+                  name="mobil"
+                  autoComplete="mobil"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="country"
+                  name="country"
+                  fullWidth
+                  select
+                  label="Select country"
+                  value={country}
+                  onChange={handleChangeCountry}
+                >
+                  {countries.map((country: string, index: number) => (
+                    <MenuItem key={index} value={country}>
+                      {country}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   autoComplete="address"
@@ -169,14 +222,6 @@ export default function SignUp() {
                   id="age"
                   label="Age"
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>

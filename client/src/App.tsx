@@ -11,6 +11,7 @@ import Admin from "./pages/Users/Admin/Admin";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import UpdateProduct from "./components/UpdateProduct/UpdateProduct";
 import ProductList from "./components/ProductList/ProductList";
+import UserList from "./components/UserList/UserList";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="createproduct" element={<CreateProduct />} />
           <Route path="updateproduct/:id" element={<UpdateProduct />} />
           <Route path="productlist" element={<ProductList />} />
+          <Route path="userlist" element={<UserList />} />
         </Route>
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />

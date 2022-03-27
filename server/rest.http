@@ -33,12 +33,15 @@ POST http://localhost:5000/api/v1/users
 content-type: application/json
 
 {
-    "firstName": "Jonh",
-    "lastName": "Doe",
+    "firstName": "Hoony",
+    "lastName": "Douglas",
     "age": 41,
-    "email": "jonhdoe@gmail.com", 
-    "password": "abc12345",
-    "address": "Hansastrasse 24"
+    "email": "hoodouglas@gmail.com", 
+    "password": "111111",
+    "address": "Hansastrasse 24",
+    "country": "Germany",
+    "city": "Soest",
+    "phone": 4917759968820
 }
 
 ###

@@ -9,6 +9,7 @@ const NavbarAdmin = () => {
         <Paper className="navbar-admin__main--paper" elevation={8}>
           <Link className="navbar-admin__main--link" to="/admin/productlist">Product List</Link>
           <Link className="navbar-admin__main--link" to="/admin/createproduct">Create Product</Link>
+          <Link className="navbar-admin__main--link" to="/admin/userlist">User List</Link>
         </Paper>
       </div>
     </div>

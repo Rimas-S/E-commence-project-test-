@@ -22,7 +22,7 @@ export default function MySnackbar(props: any, { setSuccessAndError }: any) {
     }
 
     setOpen(false);
-    props.setSuccessAndError({})
+    props.setSuccessAndError({});
   };
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>

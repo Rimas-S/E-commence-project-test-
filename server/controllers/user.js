@@ -7,7 +7,17 @@ import { JWT_SECRET } from "../util/secrets.js";
 
 export const createUser = async (req, res) => {
   try {
-    const { firstName, lastName, age, email, password, address } = req.body;
+    const {
+      firstName,
+      lastName,
+      age,
+      email,
+      password,
+      address,
+      country,
+      city,
+      phone,
+    } = req.body;
 
     const isUserNameExist = await UserService.findUserByEmail(email);
     if (isUserNameExist)
@@ -23,12 +33,18 @@ export const createUser = async (req, res) => {
       email,
       password: hasedPassword,
       address,
+      country,
+      city,
+      phone,
     });
     const user = await UserService.create(newUser);
-    const response = {success: "Account created successfully", email: user.email}
+    const response = {
+      success: "Account created successfully",
+      email: user.email,
+    };
     res.json(response);
   } catch (err) {
-    res.json({error: err.message});    
+    res.json({ error: err.message });
   }
 };
 
@@ -83,7 +99,8 @@ export const loginUser = async (req, res) => {
       }
       const token = jwt.sign(
         { userId: user._id, email: user.email, role: user.role },
-        JWT_SECRET, {expiresIn: '1h' }
+        JWT_SECRET,
+        { expiresIn: "1h" }
       );
 
       res.json({ token, userId: user._id, role: user.role });

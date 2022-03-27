@@ -5,6 +5,7 @@ import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MySnackbar from "../Snackbar/MyScanckbar";
+import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 
 const useStyles = makeStyles({
   root: {
@@ -25,6 +26,8 @@ const ProductList = () => {
   const [pageSize, setPageSize] = React.useState<number>(5);
   const [deletedData, setDeletedData] = React.useState<string>("");
   const [successAndError, setSuccessAndError] = React.useState({});
+  const [modalStatus, setModalStatus] = React.useState<boolean>(false);
+  const [deleteProductID, setDeleteProductID] = React.useState<string>("");
 
   let productRow;
   const [data, setData] = React.useState<any>();
@@ -56,6 +59,7 @@ const ProductList = () => {
         return (
           <>
             <Button
+              size="small"
               variant="outlined"
               color="success"
               onClick={() => {
@@ -65,11 +69,13 @@ const ProductList = () => {
               edit
             </Button>
             <Button
+              size="small"
               sx={{ marginLeft: 1 }}
               variant="outlined"
-              color="secondary"
+              color="error"
               onClick={() => {
-                handlerDeleteProduct(cellValues.row.id);
+                setModalStatus(true);
+                setDeleteProductID(cellValues.row.id);
               }}
             >
               delete
@@ -81,7 +87,6 @@ const ProductList = () => {
   ];
 
   // Delete pruduct handler
-
   const handlerDeleteProduct = (id: string) => {
     axios
       .delete(`http://localhost:5000/api/v1/products/${id}`)
@@ -130,7 +135,7 @@ const ProductList = () => {
 
   // error/success function
   const successAndErrorInfo = (successAndError: any) => {
-    if (successAndError._id) {
+    if (successAndError && successAndError._id) {
       return (
         <MySnackbar
           status="success"
@@ -138,7 +143,7 @@ const ProductList = () => {
           setSuccessAndError={setSuccessAndError}
         />
       );
-    } else if (successAndError.error) {
+    } else if (successAndError && successAndError.error) {
       return (
         <MySnackbar
           status="error"
@@ -171,6 +176,12 @@ const ProductList = () => {
         </div>
       )}
       {successAndErrorInfo(successAndError)}
+      <ConfirmDialog
+        value={deleteProductID}
+        open={modalStatus}
+        setOpen={setModalStatus}
+        evokeFunction={handlerDeleteProduct}
+      />
     </>
   );
 };

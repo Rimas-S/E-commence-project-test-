@@ -26,20 +26,20 @@ export const createProduct = async (req, res) => {
     console.log(err);
     res.json({
       error: err.message,
-    }); 
+    });
   }
 };
 
 export const findProduct = async (req, res) => {
   try {
     const { id: _id } = req.params;
-    const product = await ProductService.findProductById(_id)
+    const product = await ProductService.findProductById(_id);
     res.json(product);
   } catch (err) {
     console.log(err);
     res.json({
       error: err.message,
-    }); 
+    });
   }
 };
 
@@ -56,9 +56,15 @@ export const deleteProduct = async (req, res) => {
   try {
     const { id: _id } = req.params;
 
-    res.json(await ProductService.deleteProduct(_id));
+    const product = await ProductService.deleteProduct(_id);
+
+    if (product) {
+      res.json(product);
+    } else {
+      res.json({ error: "Id does not exist" });
+    }
   } catch (err) {
-    res.json({error: err.message});
+    res.json({ error: err.message });
     console.log(err);
   }
 };
@@ -67,12 +73,14 @@ export const updateProduct = async (req, res) => {
   try {
     const { id: _id } = req.params;
     const product = req.body;
-    const newProduct = await ProductService.updateProduct(_id, product, { new: true })
+    const newProduct = await ProductService.updateProduct(_id, product, {
+      new: true,
+    });
     res.json({ success: "Successfully saved.", productId: newProduct._id });
   } catch (err) {
     res.json({
       error: err.message,
-    }); 
+    });
     console.log(err);
   }
 };
