@@ -5,11 +5,13 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { Alert, Button } from "@mui/material";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 
-import "./CreateProduct.scss";
-
-import MySnackbar from "../Snackbar/MyScanckbar";
-import { fileToStringArray } from "../../services/services";
+import {
+  fileToStringArray,
+  successAndErrorInfo,
+} from "../../services/services";
 import { productSchema } from "./ProductSchema";
+
+import "./CreateProduct.scss";
 
 const CreateProduct = () => {
   const [successAndError, setSuccessAndError] = React.useState({});
@@ -36,27 +38,6 @@ const CreateProduct = () => {
         setSuccessAndError({ error: error.message });
         console.log(error);
       });
-  };
-
-  // error/success function
-  const successAndErrorInfo = (successAndError: any) => {
-    if (successAndError.success) {
-      return (
-        <MySnackbar
-          status="success"
-          message={successAndError.success}
-          setSuccessAndError={setSuccessAndError}
-        />
-      );
-    } else if (successAndError.error) {
-      return (
-        <MySnackbar
-          status="error"
-          message={successAndError.error}
-          setSuccessAndError={setSuccessAndError}
-        />
-      );
-    }
   };
 
   return (
@@ -250,7 +231,7 @@ const CreateProduct = () => {
           </Formik>
         </div>
       </div>
-      {successAndErrorInfo(successAndError)}
+      {successAndErrorInfo(successAndError, setSuccessAndError)}
     </div>
   );
 };

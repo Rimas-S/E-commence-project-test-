@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 
 import { countries } from "../../data/countries";
-import MySnackbar from "../../components/Snackbar/MyScanckbar";
+import { successAndErrorInfo } from "../../services/services";
 
 function Copyright(props: any) {
   return (
@@ -40,27 +40,6 @@ export default function SignUp() {
   const [country, setCountry] = React.useState("");
   const [successAndError, setSuccessAndError] = React.useState({});
 
-  // error/success function
-  const successAndErrorInfo = (successAndError: any) => {
-    if (successAndError.success) {
-      return (
-        <MySnackbar
-          status="success"
-          message={successAndError.success}
-          setSuccessAndError={setSuccessAndError}
-        />
-      );
-    } else if (successAndError.error) {
-      return (
-        <MySnackbar
-          status="error"
-          message={successAndError.error}
-          setSuccessAndError={setSuccessAndError}
-        />
-      );
-    }
-  };
-
   // Form submit handler
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -81,13 +60,7 @@ export default function SignUp() {
         phone: Number(data.get("mobil")),
       })
       .then(function (response) {
-        if (response.data.error) {
-          setSuccessAndError(response.data);
-        }
-
-        if (response.data.success) {
-          setSuccessAndError(response.data);
-        }
+        setSuccessAndError(response.data);
         console.log(response.data);
       })
       .catch(function (error) {
@@ -122,7 +95,7 @@ export default function SignUp() {
 
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              {successAndErrorInfo(successAndError)}
+              {successAndErrorInfo(successAndError, setSuccessAndError)}
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
