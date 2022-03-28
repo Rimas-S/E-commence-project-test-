@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   address: String,
   country: String,
   city: String,
-  phone: Number,
+  phone: String,
   role: { type: String, default: 'user' },
   product: [
     {

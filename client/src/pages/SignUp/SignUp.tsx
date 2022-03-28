@@ -40,6 +40,10 @@ export default function SignUp() {
   const [country, setCountry] = React.useState("");
   const [successAndError, setSuccessAndError] = React.useState({});
 
+  const [firstName, setFirstName] = React.useState("");
+console.log(firstName);
+
+
   // Form submit handler
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,11 +61,12 @@ export default function SignUp() {
         address: data.get("address"),
         country: data.get("counrty"),
         city: data.get("city"),
-        phone: Number(data.get("mobil")),
+        phone: data.get("mobil"),
       })
       .then(function (response) {
         setSuccessAndError(response.data);
         console.log(response.data);
+        setFirstName("")
       })
       .catch(function (error) {
         setSuccessAndError({ error: error.message });
@@ -98,6 +103,8 @@ export default function SignUp() {
               {successAndErrorInfo(successAndError, setSuccessAndError)}
               <Grid item xs={12} sm={6}>
                 <TextField
+                  value={firstName}
+                  onChange={(e)=> setFirstName(e.currentTarget.value)}
                   autoComplete="given-name"
                   name="firstName"
                   required
