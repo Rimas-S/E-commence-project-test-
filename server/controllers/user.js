@@ -59,9 +59,14 @@ export const findAll = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     const { id: _id } = req.params;
-
-    res.json(await UserService.deleteUser(_id));
+    const user = await UserService.deleteUser(_id)
+    if (user) {
+      res.json(user);
+    } else {
+      res.json({ error: "Id does not exist" });
+    }
   } catch (err) {
+    res.json({ error: err.message });
     console.log(err);
   }
 };

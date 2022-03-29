@@ -16,7 +16,7 @@ const Admin = () => {
 
   return (
     <>
-      {role === "admin" ? (
+      {token && role === "admin" ? (
         <>
           <NavbarAdmin />
           <Outlet />

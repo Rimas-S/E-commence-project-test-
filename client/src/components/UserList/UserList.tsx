@@ -24,17 +24,16 @@ const useStyles = makeStyles({
 const UsertList = () => {
   // const navigate = useNavigate();
   const classes = useStyles();
-  const [pageSize, setPageSize] = React.useState<number>(5);
+  const [pageSize, setPageSize] = React.useState<number>(10);
   const [deletedData, setDeletedData] = React.useState<string>("");
   const [successAndError, setSuccessAndError] = React.useState({});
   const [modalStatus, setModalStatus] = React.useState<boolean>(false);
   const [deleteProductID, setDeleteProductID] = React.useState<string>("");
-
-  let productRow;
   const [data, setData] = React.useState<any>();
 
-  const token = useSelector((state: any) => state.token.token);
-  console.log(token);
+  let productRow;
+
+  const token = useSelector((state: any) => state.token?.token);
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", minWidth: 230, flex: 1 },
@@ -82,8 +81,8 @@ const UsertList = () => {
               variant="outlined"
               color="error"
               onClick={() => {
-                // setModalStatus(true);
-                // setDeleteProductID(cellValues.row.id);
+                setModalStatus(true);
+                setDeleteProductID(cellValues.row.id);
               }}
             >
               delete
@@ -95,21 +94,21 @@ const UsertList = () => {
   ];
 
   // Delete pruduct handler
-  // const handlerDeleteProduct = (id: string) => {
-  //   axios
-  //     .delete(`http://localhost:5000/api/v1/products/${id}`)
-  //     .then(function (response) {
-  //       // handle success
-  //       setDeletedData(response.data);
-  //       setSuccessAndError(response.data);
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       // handle error
-  //       setSuccessAndError({ error: error.message });
-  //       console.log(error);
-  //     });
-  // };
+  const handlerDeleteProduct = (id: string) => {
+    axios
+      .delete(`http://localhost:5000/api/v1/users/${id}`)
+      .then(function (response) {
+        // handle success
+        setDeletedData(response.data);
+        setSuccessAndError(response.data);
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        setSuccessAndError({ error: error.message });
+        console.log(error);
+      });
+  };
 
   React.useEffect(() => {
     axios
@@ -123,9 +122,10 @@ const UsertList = () => {
       })
       .catch(function (error) {
         // handle error
+        setSuccessAndError({ error: error.message });
         console.log(error);
       });
-  }, [deletedData]);
+  }, [deletedData, token]);
 
   if (data) {
     productRow = data.map((user: any) => {
@@ -191,12 +191,12 @@ const UsertList = () => {
         </div>
       )}
       {successAndErrorInfo(successAndError)}
-      {/* <ConfirmDialog
+      <ConfirmDialog
         value={deleteProductID}
         open={modalStatus}
         setOpen={setModalStatus}
         evokeFunction={handlerDeleteProduct}
-      /> */}
+      />
     </>
   );
 };

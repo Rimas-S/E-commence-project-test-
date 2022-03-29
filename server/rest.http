@@ -26,22 +26,22 @@ GET http://localhost:5000/api/v1/products
 GET http://localhost:5000/api/v1/products/623530fd987ef34223dc93c4
 
 ###
-DELETE http://localhost:5000/api/v1/products/6237ec0bbcceabebbe14a9f4
+DELETE http://localhost:5000/api/v1/products/624201914e91752a97d3998a
 
 ###
 POST http://localhost:5000/api/v1/users
 content-type: application/json
 
 {
-    "firstName": "Hoony",
-    "lastName": "Douglas",
+    "firstName": "test",
+    "lastName": "test",
     "age": 41,
-    "email": "hoodouglas@gmail.com", 
-    "password": "111111",
+    "email": "test@gmail.com", 
+    "password": "test",
     "address": "Hansastrasse 24",
-    "country": "Germany",
-    "city": "Soest",
-    "phone": 4917759968820
+    "country": "test",
+    "city": "test",
+    "phone": "12556"
 }
 
 ###
@@ -69,7 +69,7 @@ content-type: application/json
 }
 
 ###
-DELETE http://localhost:5000/api/v1/users/621ec5467f4cf26235e3c2ce
+DELETE http://localhost:5000/api/v1/users/624201914e91752a97d3998a
 
 ###
 PATCH  http://localhost:5000/api/v1/users/621fdd0e0568d118b0bb26f1/product/621ec4a64ce0e143c596f365

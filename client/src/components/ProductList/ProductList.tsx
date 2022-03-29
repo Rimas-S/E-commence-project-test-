@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 const ProductList = () => {
   const navigate = useNavigate();
   const classes = useStyles();
-  const [pageSize, setPageSize] = React.useState<number>(5);
+  const [pageSize, setPageSize] = React.useState<number>(10);
   const [deletedData, setDeletedData] = React.useState<string>("");
   const [successAndError, setSuccessAndError] = React.useState({});
   const [modalStatus, setModalStatus] = React.useState<boolean>(false);
