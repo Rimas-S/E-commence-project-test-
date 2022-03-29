@@ -1,12 +1,13 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 import MySnackbar from "../Snackbar/MyScanckbar";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
-import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 const UsertList = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const classes = useStyles();
   const [pageSize, setPageSize] = React.useState<number>(10);
   const [deletedData, setDeletedData] = React.useState<string>("");
@@ -70,7 +71,7 @@ const UsertList = () => {
               variant="outlined"
               color="success"
               onClick={() => {
-                // navigate(`/admin/updateproduct/${cellValues.row.id}`);
+                navigate(`/admin/userlist/updateuser/${cellValues.row.id}`);
               }}
             >
               edit
@@ -154,7 +155,7 @@ const UsertList = () => {
       return (
         <MySnackbar
           status="success"
-          message={`Product with id ${successAndError._id} is deleted!`}
+          message={`User with id ${successAndError._id} is deleted!`}
           setSuccessAndError={setSuccessAndError}
         />
       );

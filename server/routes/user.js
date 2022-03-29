@@ -8,11 +8,13 @@ import {
   deleteUser,
   addProductsToUser,
   loginUser,
+  findUser
 } from "../controllers/user.js";
 
 const router = Router();
 
 router.get("/", passport.authenticate('jwt', {session:false}), findAll);
+router.get("/:id", findUser);
 router.post("/", createUser);
 router.post("/login", loginUser);
 router.put("/:id", updateUser);

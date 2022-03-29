@@ -5,6 +5,11 @@ const findUserByEmail = async (email) => {
   return user;
 };
 
+const findUserById = async (userId) => {
+  const user = await User.findById(userId).select('-password');
+  return user;
+};
+
 const create = async (user) => {
   return user.save();
 };
@@ -18,7 +23,7 @@ const deleteUser = async (_id) => {
 };
 
 const updateUser = async (_id, user) => {
-  return User.findByIdAndUpdate(_id, user, { new: true });
+  return User.findByIdAndUpdate(_id, user, { new: true }).select('-password');
 };
 
 const addProductsToUser = async (userId, productId) => {
@@ -31,6 +36,7 @@ const addProductsToUser = async (userId, productId) => {
 export default {
   create,
   findAllData,
+  findUserById,
   deleteUser,
   updateUser,
   addProductsToUser,

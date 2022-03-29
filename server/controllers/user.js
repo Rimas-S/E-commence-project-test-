@@ -56,10 +56,25 @@ export const findAll = async (req, res) => {
   }
 };
 
+export const findUser = async (req, res) => {
+  try {
+    const { id: _id } = req.params;
+    const user = await UserService.findUserById(_id);
+    if (user) {
+      res.json(await UserService.findUserById(_id));
+    } else {
+      res.json({ error: "User does not exist!" });
+    }
+  } catch (err) {
+    res.json({ error: err.message });
+    console.log(err);
+  }
+};
+
 export const deleteUser = async (req, res) => {
   try {
     const { id: _id } = req.params;
-    const user = await UserService.deleteUser(_id)
+    const user = await UserService.deleteUser(_id);
     if (user) {
       res.json(user);
     } else {
@@ -75,9 +90,15 @@ export const updateUser = async (req, res) => {
   try {
     const { id: _id } = req.params;
     const user = req.body;
-
-    res.json(await UserService.updateUser(_id, user, { new: true }));
+    const updatedUser = await UserService.updateUser(_id, user, { new: true })
+    if (updatedUser) {
+      res.json({success: "Account created successfully", ...updatedUser._doc});
+    } else {
+      res.json({ error: "User does not exist!" });
+    }
+    
   } catch (err) {
+    res.json({ error: err.message });
     console.log(err);
   }
 };

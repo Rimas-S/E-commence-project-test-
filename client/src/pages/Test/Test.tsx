@@ -1,9 +1,13 @@
 import React from 'react'
-import UpdateUser from '../../components/UpdateUser/UpdateUser'
+import ProductDetail from '../ProductDetail/ProductDetail'
+
+
 
 const Test = () => {
+  
+  
   return (
-    <UpdateUser />
+    <div><ProductDetail /></div>
   )
 }
 

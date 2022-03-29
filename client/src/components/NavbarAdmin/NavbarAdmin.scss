@@ -15,5 +15,10 @@
         text-shadow: 0 0 1.3px var(--mainFontColor), 0 0 1.3px var(--mainFontColor);
       }
     }
+
+    &--highlight {
+      border-bottom: solid 2px;
+      // color: red;
+    }
   }
 }

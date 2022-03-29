@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -63,7 +63,9 @@ const ProductList = () => {
               variant="outlined"
               color="success"
               onClick={() => {
-                navigate(`/admin/updateproduct/${cellValues.row.id}`);
+                navigate(
+                  `/admin/productlist/updateproduct/${cellValues.row.id}`
+                );
               }}
             >
               edit
@@ -159,10 +161,20 @@ const ProductList = () => {
       {data === undefined ? (
         ""
       ) : (
-        <div
-          className="container"
-          style={{ height: 400, width: "100%", marginTop: "2rem" }}
-        >
+        <div className="container" style={{ height: 400, width: "100%" }}>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Button
+                onClick={() => navigate("/admin/productlist/createproduct")}
+                sx={{ m: 2 }}
+                variant="contained"
+                size="small"
+                color="success"
+              >
+                Add product
+              </Button>
+            </Grid>
+          </Grid>
           <DataGrid
             className={classes.root}
             rows={rows}

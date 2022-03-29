@@ -14,11 +14,13 @@ import axios from "axios";
 
 import { countries } from "../../data/countries";
 import { successAndErrorInfo } from "../../services/services";
+import { useParams } from "react-router-dom";
 
 const theme = createTheme();
 
 const UpdateUser = () => {
   const [successAndError, setSuccessAndError] = React.useState({});
+
   // input initials
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
@@ -29,45 +31,60 @@ const UpdateUser = () => {
   const [city, setCity] = React.useState("");
   const [phone, setPhone] = React.useState("");
 
-  const resetInput = () => {
-    setFirstName("");
-    setLastName("");
-    setAge("");
-    setEmail("");
-    setAddress("");
-    setCountry("");
-    setCity("");
-    setPhone("");
+  const userId = useParams()?.id;
+
+  React.useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/users/${userId}`)
+      .then(function (response) {
+        setSuccessAndError(response.data);
+        if (response.data._id) {
+          resetInput(response.data);
+        }
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        setSuccessAndError({ error: error.message });
+        console.log(error);
+      });
+  }, [userId]);
+
+  const resetInput = (data: any) => {
+    setFirstName(data.firstName);
+    setLastName(data.lastName);
+    setAge(data.age.toString());
+    setEmail(data.email);
+    setAddress(data.address);
+    setCountry(data.country);
+    setCity(data.city);
+    setPhone(data.phone);
   };
 
   // Form submit handler
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log("submit");
-    
+
     // eslint-disable-next-line no-console
-    // axios
-    //   .post("http://localhost:5000/api/v1/users", {
-    //     firstName: data.get("firstName"),
-    //     lastName: data.get("lastName"),
-    //     age: Number(data.get("age")),
-    //     email: data.get("email"),
-    //     password: data.get("password"),
-    //     address: data.get("address"),
-    //     country: country, // dropdown
-    //     city: data.get("city"),
-    //     phone: data.get("mobil"),
-    //   })
-    //   .then(function (response) {
-    //     setSuccessAndError(response.data);
-    //     if (response.data.success) resetInput();
-    //     console.log(response.data);
-    //   })
-    //   .catch(function (error) {
-    //     setSuccessAndError({ error: error.message });
-    //     console.log(error);
-    //   });
+    axios
+      .put(`http://localhost:5000/api/v1/users/${userId}`, {
+        firstName: firstName,
+        lastName: lastName,
+        age: Number(age),
+        email: email,
+        address: address,
+        country: country,
+        city: city,
+        phone: phone,
+      })
+      .then(function (response) {
+        setSuccessAndError(response.data);
+        if (response.data.success) resetInput(response.data);
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        setSuccessAndError({ error: error.message });
+        console.log(error);
+      });
   };
 
   // country select handler
@@ -91,7 +108,7 @@ const UpdateUser = () => {
             <UpdateIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            User ID some id here
+            User ID "{userId}"
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
