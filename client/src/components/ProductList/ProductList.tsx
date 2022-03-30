@@ -6,6 +6,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MySnackbar from "../Snackbar/MyScanckbar";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
+import MuiLoader from "../MuiLoader/MuiLoader";
+
+import './ProductList.scss'
 
 const useStyles = makeStyles({
   root: {
@@ -159,7 +162,9 @@ const ProductList = () => {
   return (
     <>
       {data === undefined ? (
-        ""
+        <div className="productlist__muiloader flex">
+          <MuiLoader size={60} />
+        </div>
       ) : (
         <div className="container" style={{ height: 400, width: "100%" }}>
           <Grid container justifyContent="flex-end">

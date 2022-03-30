@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
+import MuiLoader from "../../components/MuiLoader/MuiLoader";
 
 import "./Shop.scss";
 
@@ -30,7 +31,13 @@ const Shop = () => {
   return (
     <div className="shop">
       <h1>Shop page</h1>
-      <div className="container flex">{data ? mapCard(data) : <></>}</div>
+      {data ? (
+        <div className="container flex">{mapCard(data)}</div>
+      ) : (
+        <div className="shop__muiloader">
+          <MuiLoader size={100} />
+        </div>
+      )}
     </div>
   );
 };

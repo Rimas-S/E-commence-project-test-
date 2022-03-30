@@ -1,8 +1,17 @@
 .shop {
-    padding: 2%;
-    .flex {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
+  padding: 2%;
+  
+  .flex {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  &__muiloader {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

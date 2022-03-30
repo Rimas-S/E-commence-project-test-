@@ -2,31 +2,44 @@ import React from "react";
 import ImageGallery from "react-image-gallery";
 
 import "./ProductDetail.scss";
+type Gallery = {
+  original: string;
+  thumbnail: string;
+};
 
-const ProductDetail = () => {
-  const images = [
-    {
-      original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-  ];
+type Props = {
+  images: string[];
+};
+
+const ProductDetail = (props: Props) => {
+  //   const [gallery, setGallery] = React.useState<Gallery[]>([]);
+  console.log(props.images);
+
+  const galleryImages = () => {
+    const galleryImages: Gallery[] = [];
+    props.images?.forEach((image) => {
+      const galleryItem = {
+        original: image,
+        thumbnail: image,
+      };
+      galleryImages.push(galleryItem);
+    });
+    return galleryImages;
+  };
+  const gallery = galleryImages();
+//   console.log(a);
+  //   setGallery(a)
+
+  //   setGallery(galleryImages);
 
   return (
     <div className="image__gallery">
       <ImageGallery
-        items={images}
+        items={gallery}
         showPlayButton={false}
         autoPlay={false}
         showFullscreenButton={false}
-        showNav={false}        
+        showNav={false}
       />
     </div>
   );
