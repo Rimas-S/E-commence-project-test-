@@ -1,15 +1,15 @@
-import axios from "axios";
 import React from "react";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import MuiLoader from "../../components/MuiLoader/MuiLoader";
+import { axiosInstance } from "../../config";
 
 import "./Shop.scss";
 
 const Shop = () => {
   const [data, setData] = React.useState<any>();
   React.useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/v1/products")
+    axiosInstance
+      .get("/products")
       .then(function (response) {
         // handle success
         setData(response.data);

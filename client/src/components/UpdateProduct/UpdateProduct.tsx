@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -12,6 +11,7 @@ import MySnackbar from "../Snackbar/MyScanckbar";
 import { fileToStringArray } from "../../services/services";
 import { productSchema } from "./ProductSchema";
 import { useParams } from "react-router-dom";
+import { axiosInstance } from "../../config";
 
 const UpdateProduct = () => {
   const [successAndError, setSuccessAndError] = React.useState({});
@@ -39,8 +39,8 @@ const UpdateProduct = () => {
 
   // get product by id
   const getProduct = (id: string | undefined) => {
-    axios
-      .get(`http://localhost:5000/api/v1/products/${id}`)
+    axiosInstance
+      .get(`/products/${id}`)
       .then(function (response) {
         setProductById(response.data);
         setSuccessAndError(response.data);
@@ -61,8 +61,8 @@ const UpdateProduct = () => {
   const updateProduct = (value: any) => {
     console.log(value);
 
-    axios
-      .put(`http://localhost:5000/api/v1/products/${id}`, value)
+    axiosInstance
+      .put(`/products/${id}`, value)
       .then(function (response) {
         setSuccessAndError(response.data);
         console.log(response);

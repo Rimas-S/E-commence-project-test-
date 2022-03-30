@@ -10,11 +10,11 @@ import UpdateIcon from "@mui/icons-material/Update";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
 
 import { countries } from "../../data/countries";
 import { successAndErrorInfo } from "../../services/services";
 import { useParams } from "react-router-dom";
+import { axiosInstance } from "../../config";
 
 const theme = createTheme();
 
@@ -34,8 +34,8 @@ const UpdateUser = () => {
   const userId = useParams()?.id;
 
   React.useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/v1/users/${userId}`)
+    axiosInstance
+      .get(`/users/${userId}`)
       .then(function (response) {
         setSuccessAndError(response.data);
         if (response.data._id) {
@@ -65,8 +65,8 @@ const UpdateUser = () => {
     event.preventDefault();
 
     // eslint-disable-next-line no-console
-    axios
-      .put(`http://localhost:5000/api/v1/users/${userId}`, {
+    axiosInstance
+      .put(`/users/${userId}`, {
         firstName: firstName,
         lastName: lastName,
         age: Number(age),

@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import MySnackbar from "../Snackbar/MyScanckbar";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
+import { axiosInstance } from "../../config";
 
 const useStyles = makeStyles({
   root: {
@@ -96,8 +96,8 @@ const UsertList = () => {
 
   // Delete pruduct handler
   const handlerDeleteProduct = (id: string) => {
-    axios
-      .delete(`http://localhost:5000/api/v1/users/${id}`)
+    axiosInstance
+      .delete(`/users/${id}`)
       .then(function (response) {
         // handle success
         setDeletedData(response.data);
@@ -112,8 +112,8 @@ const UsertList = () => {
   };
 
   React.useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/v1/users", {
+    axiosInstance
+      .get("/users", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(function (response) {

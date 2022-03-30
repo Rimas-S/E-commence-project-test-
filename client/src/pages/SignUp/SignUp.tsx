@@ -11,10 +11,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
 
 import { countries } from "../../data/countries";
 import { successAndErrorInfo } from "../../services/services";
+import { axiosInstance } from "../../config";
 
 function Copyright(props: any) {
   return (
@@ -66,8 +66,8 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    axios
-      .post("http://localhost:5000/api/v1/users", {
+    axiosInstance
+      .post("/users", {
         firstName: data.get("firstName"),
         lastName: data.get("lastName"),
         age: Number(data.get("age")),

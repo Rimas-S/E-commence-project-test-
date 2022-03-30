@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Alert, Button } from "@mui/material";
@@ -12,6 +11,7 @@ import {
 import { productSchema } from "./ProductSchema";
 
 import "./CreateProduct.scss";
+import { axiosInstance } from "../../config";
 
 const CreateProduct = () => {
   const [successAndError, setSuccessAndError] = React.useState({});
@@ -29,8 +29,8 @@ const CreateProduct = () => {
 
   // saving data in database
   const postProduct = (value: any) => {
-    axios
-      .post("http://localhost:5000/api/v1/products", value)
+    axiosInstance
+      .post("/products", value)
       .then(function (response) {
         setSuccessAndError(response.data);
       })

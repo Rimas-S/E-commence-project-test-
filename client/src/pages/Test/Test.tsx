@@ -1,12 +1,12 @@
-import axios from "axios";
 import React from "react";
+import { axiosInstance } from "../../config";
 import ProductDetail from "../ProductDetail/ProductDetail";
 
 const Test = () => {
   const [data, setData] = React.useState<any>();
   React.useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/v1/products")
+    axiosInstance
+      .get("/products")
       .then(function (response) {
         // handle success
         setData(response.data);

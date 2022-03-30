@@ -2,13 +2,13 @@ import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Button, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MySnackbar from "../Snackbar/MyScanckbar";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import MuiLoader from "../MuiLoader/MuiLoader";
 
 import './ProductList.scss'
+import { axiosInstance } from "../../config";
 
 const useStyles = makeStyles({
   root: {
@@ -93,8 +93,8 @@ const ProductList = () => {
 
   // Delete pruduct handler
   const handlerDeleteProduct = (id: string) => {
-    axios
-      .delete(`http://localhost:5000/api/v1/products/${id}`)
+    axiosInstance
+      .delete(`/products/${id}`)
       .then(function (response) {
         // handle success
         setDeletedData(response.data);
@@ -109,8 +109,8 @@ const ProductList = () => {
   };
 
   React.useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/v1/products")
+    axiosInstance
+      .get("/products")
       .then(function (response) {
         // handle success
         setData(response.data);

@@ -4,7 +4,6 @@ import "./NavbarAdmin.scss";
 
 const NavbarAdmin = () => {
   const location: string = useLocation().pathname;
-  console.log(location);
 
   return (
     <div className="navbar-admin">

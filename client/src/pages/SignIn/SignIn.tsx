@@ -13,10 +13,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { saveToken } from "../../State/Redux/action";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../../config";
 
 function Copyright(props: any) {
   return (
@@ -49,8 +49,8 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
     // fetching
-    axios
-      .post("http://localhost:5000/api/v1/users/login", {
+    axiosInstance
+      .post("/users/login", {
         email: data.get("email"),
         password: data.get("password"),
       })
