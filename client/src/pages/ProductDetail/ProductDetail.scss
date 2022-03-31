@@ -1,19 +1,34 @@
 .product-detail {
+  padding-top: 3rem;
   &__body {
     .grid {
       grid-template-columns: 1fr;
       justify-items: start;
     }
     &--detail {
-      height: 100%;
+      padding-right: 2rem;
       width: 100%;
+      @media (max-width: 810px) {
+        padding-left: 2rem;
+      }
 
-      &_title {
+      &_payment-methods {
+        width: 100%;
+      }
+
+      .flex {
+        justify-content: space-between;
       }
 
       &_button {
-          width: 50%;
+        width: 50%;
       }
+    }
+  }
+  @media (max-width: 810px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
     }
   }
 }
