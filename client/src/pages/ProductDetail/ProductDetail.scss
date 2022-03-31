@@ -1,6 +1,19 @@
-.image__gallery {
-    @import "~react-image-gallery/styles/scss/image-gallery.scss";
+.product-detail {
+  &__body {
+    .grid {
+      grid-template-columns: 1fr;
+      justify-items: start;
+    }
+    &--detail {
+      height: 100%;
+      width: 100%;
 
-    width: 100%;
+      &_title {
+      }
 
+      &_button {
+          width: 50%;
+      }
+    }
+  }
 }

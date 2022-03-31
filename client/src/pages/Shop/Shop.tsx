@@ -7,6 +7,7 @@ import "./Shop.scss";
 
 const Shop = () => {
   const [data, setData] = React.useState<any>();
+
   React.useEffect(() => {
     axiosInstance
       .get("/products")
@@ -23,7 +24,12 @@ const Shop = () => {
   const mapCard = (data: any) => {
     return data.map((data: any, index: number) => (
       <div key={index}>
-        <ProductCard images={data.image} price={data.price} title={data.name} />
+        <ProductCard
+          images={data.image}
+          price={data.price}
+          title={data.name}
+          id={data._id}
+        />
       </div>
     ));
   };

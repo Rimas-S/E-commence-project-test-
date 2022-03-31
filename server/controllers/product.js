@@ -34,7 +34,13 @@ export const findProduct = async (req, res) => {
   try {
     const { id: _id } = req.params;
     const product = await ProductService.findProductById(_id);
-    res.json(product);
+    if (product) {
+      res.json(product);
+    } else {
+      res.json({
+        error: "Product does not exist!",
+      });
+    }
   } catch (err) {
     console.log(err);
     res.json({

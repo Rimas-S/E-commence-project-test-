@@ -13,6 +13,7 @@ import UpdateProduct from "./components/UpdateProduct/UpdateProduct";
 import ProductList from "./components/ProductList/ProductList";
 import UserList from "./components/UserList/UserList";
 import UpdateUser from "./components/UpdateUser/UpdateUser";
+import ProductDetail from "./pages/ProductDetail/ProductDetail";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="shop" element={<Shop />} />
+        <Route path="productdetail/:id" element={<ProductDetail />} />
         <Route path="test" element={<Test />} />
         <Route path="admin" element={<Admin />}>
         <Route path="productlist" element={<ProductList />} />
