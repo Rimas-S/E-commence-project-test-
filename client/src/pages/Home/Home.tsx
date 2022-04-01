@@ -1,8 +1,18 @@
-
+import { useNavigate } from "react-router-dom";
 import "./Home.scss";
 
 const Home = () => {
-  return <div className="home-page">Home</div>;
+  const navigate = useNavigate();
+  return (
+    <div className="home-page">
+      <div className="home-page__showcase container flex">
+        <h4>collegtion brand name</h4>
+        <h1>SUMMER COLLECTION</h1>
+        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, eius</h3>
+        <button onClick={() => navigate('/shop')} className="home-page__showcase--btn">View Collegtion</button>
+      </div>
+    </div>
+  );
 };
 
 export default Home;

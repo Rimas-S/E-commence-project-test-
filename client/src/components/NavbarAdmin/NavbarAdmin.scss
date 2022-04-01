@@ -1,4 +1,5 @@
 .navbar-admin {
+  padding-top: 2rem;
   &__main {
     &--paper {
       padding: 0.8rem 0.5rem;
@@ -12,7 +13,8 @@
       transition: text-shadow 0.3s;
 
       &:hover {
-        text-shadow: 0 0 1.3px var(--mainFontColor), 0 0 1.3px var(--mainFontColor);
+        text-shadow: 0 0 1.3px var(--mainFontColor),
+          0 0 1.3px var(--mainFontColor);
       }
     }
 
