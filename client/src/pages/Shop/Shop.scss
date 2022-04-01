@@ -1,10 +1,14 @@
 .shop {
-  padding: 2%;
-  
+  &__header {
+    padding: 1rem 0;
+    text-align: center;
+  }
+
   .flex {
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
+    padding: 0 1%;
   }
 
   &__muiloader {

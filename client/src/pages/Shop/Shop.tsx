@@ -2,6 +2,7 @@ import React from "react";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import MuiLoader from "../../components/MuiLoader/MuiLoader";
 import { axiosInstance } from "../../config";
+import BackToTop from "react-custom-back-to-top-button";
 
 import "./Shop.scss";
 
@@ -36,7 +37,10 @@ const Shop = () => {
 
   return (
     <div className="shop">
-      <h1>Shop page</h1>
+      <div className="shop__header">
+        <h1>COLLECTION</h1>
+      </div>
+
       {data ? (
         <div className="container flex">{mapCard(data)}</div>
       ) : (
@@ -44,6 +48,8 @@ const Shop = () => {
           <MuiLoader size={100} />
         </div>
       )}
+
+      <BackToTop style={{opacity: 0.7, backgroundColor: "var(--backgroundColorPrimary)"}} />
     </div>
   );
 };

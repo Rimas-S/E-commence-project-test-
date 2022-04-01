@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.scss";
-
 import Navbar from "./components/Navbar/Navbar";
 import Test from "./pages/Test/Test";
 import Home from "./pages/Home/Home";
@@ -14,6 +13,7 @@ import ProductList from "./components/ProductList/ProductList";
 import UserList from "./components/UserList/UserList";
 import UpdateUser from "./components/UpdateUser/UpdateUser";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
+
 
 function App() {
   return (
