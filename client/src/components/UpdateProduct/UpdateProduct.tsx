@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { Alert, Button } from "@mui/material";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { Alert, Button, Paper } from "@mui/material";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 
 import "./UpdateProduct.scss";
@@ -33,9 +33,8 @@ const UpdateProduct = () => {
 
   // const a = useParams()
   // console.log(a.id);
-  
 
-  const {id} = useParams();
+  const { id } = useParams();
 
   // get product by id
   const getProduct = (id: string | undefined) => {
@@ -120,7 +119,10 @@ const UpdateProduct = () => {
   return (
     <div className="product-form">
       <div className="product-form__main container flex">
-        <h3 className="product-form__title">Update Product</h3>
+        <Paper elevation={4} className="product-form__title">
+          <h3>Product update</h3>
+        </Paper>
+
         <div className="product-form__body">
           <Formik
             enableReinitialize={true}
@@ -311,7 +313,10 @@ const UpdateProduct = () => {
                 ) : (
                   <div className="product-form__item image__flex">
                     {currentImages.map((image: string, index: number) => (
-                      <div className="product-form__item--image-wrapper" key={index}>
+                      <div
+                        className="product-form__item--image-wrapper"
+                        key={index}
+                      >
                         <img
                           className="product-form__item--image"
                           src={image}
@@ -335,7 +340,7 @@ const UpdateProduct = () => {
                     className="product-form__item--submit"
                     type="submit"
                   >
-                    Submit
+                    update
                   </Button>
                 </div>
               </Form>

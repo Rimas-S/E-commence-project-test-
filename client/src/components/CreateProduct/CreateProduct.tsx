@@ -1,7 +1,7 @@
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { Alert, Button } from "@mui/material";
+import { Alert, Button, Paper } from "@mui/material";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 
 import {
@@ -43,7 +43,9 @@ const CreateProduct = () => {
   return (
     <div className="product-form">
       <div className="product-form__main container flex">
-        <h3 className="product-form__title">Create Product</h3>
+        <Paper elevation={4} className="product-form__title">
+          <h3>Product create</h3>
+        </Paper>
         <div className="product-form__body">
           <Formik
             initialValues={initialValues}
@@ -223,7 +225,7 @@ const CreateProduct = () => {
                     className="product-form__item--submit"
                     type="submit"
                   >
-                    Submit
+                    create
                   </Button>
                 </div>
               </Form>

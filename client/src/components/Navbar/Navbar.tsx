@@ -1,6 +1,6 @@
 import "./Navbar.scss";
 import ThemeSwitch from "./ThemeSwitch/ThemeSwitch";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SignIn from "./Buttons/SignIn";
 import SignUp from "./Buttons/SignUp";
 import UserMenu from "../UserMenu/UserMenu";
@@ -12,6 +12,7 @@ import { deleteToken } from "../../State/Redux/action";
 
 const Navbar = () => {
   const navbar = ["Home", "Shop", "Contact", "Test"];
+  const navigate = useNavigate();
 
   const [isLoggedIn, setisLoggedIn] = useState("false");
 
@@ -52,7 +53,7 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="navbar__header container flex">
-        <img className="navbar__logo" src="/img/logo.png" alt="logo" />
+        <img onClick={()=> navigate('/')} className="navbar__logo" src="/img/logo.png" alt="logo" />
         <div className="navbar__header--btn flex">
           <Greeting isLoggedIn={isLoggedIn} />
           <ThemeSwitch />
