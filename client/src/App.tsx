@@ -13,6 +13,7 @@ import ProductList from "./components/ProductList/ProductList";
 import UserList from "./components/UserList/UserList";
 import UpdateUser from "./components/UpdateUser/UpdateUser";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -35,6 +36,8 @@ function App() {
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
       </Routes>
+
+      <Footer />
     </div>
   );
 }

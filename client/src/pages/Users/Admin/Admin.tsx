@@ -17,12 +17,17 @@ const Admin = () => {
   return (
     <>
       {token && role === "admin" ? (
-        <>
+        <div className="admin">
           <NavbarAdmin />
-          <Outlet />
-        </>
+          <div className="outlet">
+            <Outlet />
+          </div>
+        </div>
       ) : (
-        <div><p>You are not Admin!</p><Link to="/signin">Log in</Link></div>
+        <div>
+          <p>You are not Admin!</p>
+          <Link to="/signin">Log in</Link>
+        </div>
       )}
     </>
   );

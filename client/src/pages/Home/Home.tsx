@@ -8,8 +8,15 @@ const Home = () => {
       <div className="home-page__showcase container flex">
         <h4>collection brand name</h4>
         <h1>SUMMER COLLECTION</h1>
-        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, eius</h3>
-        <button onClick={() => navigate('/shop')} className="home-page__showcase--btn">VIEW COLLECTION</button>
+        <h3>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, eius
+        </h3>
+        <button
+          onClick={() => navigate("/shop")}
+          className="home-page__showcase--btn"
+        >
+          VIEW COLLECTION
+        </button>
       </div>
     </div>
   );
