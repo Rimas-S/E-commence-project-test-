@@ -90,3 +90,18 @@ export const updateProduct = async (req, res) => {
     console.log(err);
   }
 };
+
+export const addRateToUser = async (req, res) => {
+  try {    
+    const productId = req.params.productId;
+    const vote = req.body;
+
+    console.log(productId, vote);
+
+    const user = await ProductService.addRateToUser(productId, vote)
+    
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+  }
+};

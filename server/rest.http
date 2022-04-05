@@ -29,6 +29,17 @@ GET http://localhost:5000/api/v1/products/623530fd987ef34223dc93c4
 DELETE http://localhost:5000/api/v1/products/624201914e91752a97d3998a
 
 ###
+PATCH http://localhost:5000/api/v1/products/rate/623530fd987ef34223dc93c4
+content-type: application/json
+
+{
+    "user": "623fb36cd5ff3fd78d9bf349",
+      "rate": 4,
+      "comment": "ghghghgh"
+}
+
+
+###
 POST http://localhost:5000/api/v1/users
 content-type: application/json
 

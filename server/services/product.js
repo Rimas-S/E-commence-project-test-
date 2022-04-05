@@ -7,7 +7,7 @@ const findProductByName = async (name) => {
 };
 
 const findProductById = async (id) => {
-  const product = await Product.findById(id);
+  const product = await Product.findById(id).populate("ratings.user");
   return product;
 };
 
@@ -16,7 +16,7 @@ const create = async (product) => {
 };
 
 const findAllData = async () => {
-  return Product.find();
+  return Product.find().populate("ratings.user");
 };
 
 const deleteProduct = async (_id) => {
@@ -27,6 +27,12 @@ const updateProduct = async (_id, product) => {
   return Product.findByIdAndUpdate(_id, product, { new: true });
 };
 
+const addRateToUser = async (productId, rate) => {
+  const product = await Product.findById(productId);
+
+  product.ratings.push(rate);
+  return product.save();
+};
 
 export default {
   create,
@@ -35,4 +41,5 @@ export default {
   deleteProduct,
   findProductByName,
   findProductById,
+  addRateToUser
 };
