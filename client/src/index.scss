@@ -19,8 +19,9 @@ code {
   --headerFontColor: #fff;
   --primaryShadow: 0, 0, 0; 
   --backgroundColorPrimary: #040e1b;
+  --backgroundColorSecondary: #e85d04;
   --backgroundColorMode: #ffffff;
-  --color: rgb(63, 2, 231);
+  --color: #660708;
 }
 
 [data-theme="dark"] {
@@ -29,8 +30,9 @@ code {
   --headerFontColor: #fff;
   --primaryShadow: 255, 255, 255;
   --backgroundColorPrimary: #040e1b;
+  --backgroundColorSecondary: #660708;
   --backgroundColorMode: #161a1d;
-  --color: rgb(2, 231, 78);
+  --color: #660708;
 }
 
 

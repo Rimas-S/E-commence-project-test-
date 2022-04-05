@@ -15,27 +15,33 @@ import UpdateUser from "./components/UpdateUser/UpdateUser";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Footer from "./components/Footer/Footer";
 
-
 function App() {
   return (
     <div className="App" data-theme="">
       <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="shop" element={<Shop />} />
-        <Route path="productdetail/:id" element={<ProductDetail />} />
-        <Route path="test" element={<Test />} />
-        <Route path="admin" element={<Admin />}>
-        <Route path="productlist" element={<ProductList />} />
-          <Route path="productlist/createproduct" element={<CreateProduct />} />
-          <Route path="productlist/updateproduct/:id" element={<UpdateProduct />} />          
-          <Route path="userlist" element={<UserList />} />
-          <Route path="userlist/updateuser/:id" element={<UpdateUser />} />
-        </Route>
-        <Route path="signin" element={<SignIn />} />
-        <Route path="signup" element={<SignUp />} />
-      </Routes>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="productdetail/:id" element={<ProductDetail />} />
+          <Route path="test" element={<Test />} />
+          <Route path="admin" element={<Admin />}>
+            <Route path="productlist" element={<ProductList />} />
+            <Route
+              path="productlist/createproduct"
+              element={<CreateProduct />}
+            />
+            <Route
+              path="productlist/updateproduct/:id"
+              element={<UpdateProduct />}
+            />
+            <Route path="userlist" element={<UserList />} />
+            <Route path="userlist/updateuser/:id" element={<UpdateUser />} />
+          </Route>
+          <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
+        </Routes>
+      </div>
 
       <Footer />
     </div>

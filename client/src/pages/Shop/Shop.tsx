@@ -49,7 +49,7 @@ const Shop = () => {
         </div>
       )}
 
-      <BackToTop style={{opacity: 0.7, backgroundColor: "var(--backgroundColorPrimary)"}} />
+      <BackToTop style={{opacity: 0.7, backgroundColor: "var(--backgroundColorSecondary)"}} />
     </div>
   );
 };
