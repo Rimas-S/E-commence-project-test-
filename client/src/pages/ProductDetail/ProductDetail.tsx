@@ -1,15 +1,17 @@
-import { Button } from "@mui/material";
+import { Button, Rating, Typography } from "@mui/material";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import React from "react";
 import { useParams } from "react-router-dom";
 import MyImageGallery from "../../components/MyImageGallery/MyImageGallery";
 import { axiosInstance } from "../../config";
 import "./ProductDetail.scss";
+import { averageRating } from "../../services/services";
 
 const ProductDetail = () => {
+  const [value, setValue] = React.useState<number | null>(0);
+
   const [data, setData] = React.useState<any>();
   const { id } = useParams();
-  console.log(data);
 
   React.useEffect(() => {
     axiosInstance
@@ -17,6 +19,9 @@ const ProductDetail = () => {
       .then(function (response) {
         // handle success
         setData(response.data);
+        if (response.data?.ratings?.length !== 0) {
+          setValue(averageRating(response.data.ratings));
+        }
       })
       .catch(function (error) {
         // handle error
@@ -24,6 +29,7 @@ const ProductDetail = () => {
         console.log(error);
       });
   }, [id]);
+
   return (
     <main className="product-detail">
       {data?._id ? (
@@ -59,6 +65,10 @@ const ProductDetail = () => {
                 src="/img/payment.png"
                 alt="payment"
               />
+            </div>
+            <div className="product-detail__body--detail_rating">
+              <Typography component="legend">Rating</Typography>
+              <Rating name="read-only" value={value} readOnly />
             </div>
             <div className="product-detail__body--detail_description">
               <h3>Product Description</h3>

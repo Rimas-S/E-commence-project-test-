@@ -7,7 +7,7 @@ const findProductByName = async (name) => {
 };
 
 const findProductById = async (id) => {
-  const product = await Product.findById(id).populate("ratings.user");
+  const product = await Product.findById(id).populate('ratings.user', '-password');
   return product;
 };
 
@@ -16,7 +16,7 @@ const create = async (product) => {
 };
 
 const findAllData = async () => {
-  return Product.find().populate("ratings.user");
+  return Product.find();
 };
 
 const deleteProduct = async (_id) => {

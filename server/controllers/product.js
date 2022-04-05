@@ -51,7 +51,8 @@ export const findProduct = async (req, res) => {
 
 export const findAll = async (req, res) => {
   try {
-    res.json(await ProductService.findAllData());
+    const products = await ProductService.findAllData();
+    res.json(products);
   } catch (err) {
     res.json(err);
     console.log(err);
@@ -92,14 +93,14 @@ export const updateProduct = async (req, res) => {
 };
 
 export const addRateToUser = async (req, res) => {
-  try {    
+  try {
     const productId = req.params.productId;
     const vote = req.body;
 
     console.log(productId, vote);
 
-    const user = await ProductService.addRateToUser(productId, vote)
-    
+    const user = await ProductService.addRateToUser(productId, vote);
+
     res.json(user);
   } catch (err) {
     console.log(err);

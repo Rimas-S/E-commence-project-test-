@@ -23,7 +23,10 @@ export const fileToStringArray = async (arr: any) => {
 };
 
 // error/success function
-export const successAndErrorInfo = (successAndError: any, setSuccessAndError: any) => {
+export const successAndErrorInfo = (
+  successAndError: any,
+  setSuccessAndError: any
+) => {
   if (successAndError.success) {
     return (
       <MySnackbar
@@ -41,4 +44,17 @@ export const successAndErrorInfo = (successAndError: any, setSuccessAndError: an
       />
     );
   }
+};
+
+// Average rating function
+export const averageRating = (array: any) => {
+  let averageRating = 0;
+  if (array != null || undefined) {
+    array.forEach(
+      (item: { rate: number }) => (averageRating = item.rate + averageRating)
+    );
+  }
+
+  averageRating = averageRating / array.length;
+  return averageRating;
 };

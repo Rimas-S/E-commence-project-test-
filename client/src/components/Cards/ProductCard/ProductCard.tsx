@@ -1,3 +1,4 @@
+import { Rating } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import MyCarousel from "../../Carousel/Carousel";
@@ -8,9 +9,10 @@ type ProductCardProps = {
   price: number;
   title: string;
   id: string;
+  value: number
 };
 
-const ProductCard = ({ images, price, title, id }: ProductCardProps) => {
+const ProductCard = ({ images, price, title, id , value }: ProductCardProps) => {
   const navigate = useNavigate();
   return (
     <div className="product-card">
@@ -25,6 +27,8 @@ const ProductCard = ({ images, price, title, id }: ProductCardProps) => {
         </h3>
 
         <h3 className="product-card__title">{title}</h3>
+
+        <Rating name="read-only" value={value} readOnly size="small" />
 
         <div className="product-card__buttons">
           <Button color="secondary" variant="outlined" onClick={()=> {navigate(`/productdetail/${id}`)}}>

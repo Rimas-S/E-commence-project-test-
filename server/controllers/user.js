@@ -92,7 +92,7 @@ export const updateUser = async (req, res) => {
     const user = req.body;
     const updatedUser = await UserService.updateUser(_id, user, { new: true })
     if (updatedUser) {
-      res.json({success: "Account created successfully", ...updatedUser._doc});
+      res.json({success: "Account updated successfully", ...updatedUser._doc});
     } else {
       res.json({ error: "User does not exist!" });
     }

@@ -5,6 +5,7 @@ import { axiosInstance } from "../../config";
 import BackToTop from "react-custom-back-to-top-button";
 
 import "./Shop.scss";
+import { averageRating } from "../../services/services";
 
 const Shop = () => {
   const [data, setData] = React.useState<any>();
@@ -30,6 +31,7 @@ const Shop = () => {
           price={data.price}
           title={data.name}
           id={data._id}
+          value={averageRating(data.ratings)}
         />
       </div>
     ));
@@ -49,7 +51,13 @@ const Shop = () => {
         </div>
       )}
 
-      <BackToTop style={{opacity: 0.7, backgroundColor: "var(--backgroundColorSecondary)"}} />
+      {/* This creates Warning: findDOMNode is deprecated in StrictMode.*/}
+      <BackToTop
+        style={{
+          opacity: 0.7,
+          backgroundColor: "var(--backgroundColorSecondary)",
+        }}
+      />
     </div>
   );
 };

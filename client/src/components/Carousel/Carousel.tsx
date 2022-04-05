@@ -9,7 +9,7 @@ type Props = {
 const MyCarousel = ({ images }: Props) => {
   return (
     <div className="my-carousel">
-      <Carousel>
+      <Carousel >
         {images.map((image: string, index: number) => (
           <Carousel.Item key={index}>
             <img className="d-block w-100" src={image} alt={`Slide ${index}`} />
