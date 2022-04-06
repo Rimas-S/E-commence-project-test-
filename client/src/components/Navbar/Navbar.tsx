@@ -9,6 +9,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { Token } from "../../State/StateTypes/stateTypes";
 import jwt_decode from "jwt-decode";
 import { deleteToken } from "../../State/Redux/action";
+import Basket from "../Basket/Basket";
 
 const Navbar = () => {
   const navbar = ["Home", "Shop", "Contact", "Test"];
@@ -20,6 +21,8 @@ const Navbar = () => {
   const checkToken: Token | null = useSelector(
     (state: RootStateOrAny) => state.token
   );
+
+  const basketItem = useSelector((state: RootStateOrAny) => state.basket);
 
   useEffect(() => {
     if (checkToken === null) {
@@ -50,12 +53,22 @@ const Navbar = () => {
     );
   }
 
+  const handlerBasket = () => {
+    
+  };
+
   return (
     <header className="navbar">
       <div className="navbar__header container flex">
-        <img onClick={()=> navigate('/')} className="navbar__logo" src="/img/logo.png" alt="logo" />
+        <img
+          onClick={() => navigate("/")}
+          className="navbar__logo"
+          src="/img/logo.png"
+          alt="logo"
+        />
         <div className="navbar__header--btn flex">
           <Greeting isLoggedIn={isLoggedIn} />
+          <Basket value={basketItem.length} onClick={handlerBasket} />
           <ThemeSwitch />
         </div>
       </div>

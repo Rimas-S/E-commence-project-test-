@@ -1,32 +1,29 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+
+import Basket from "../../components/Basket/Basket";
+import { addProductToBasket } from "../../State/Redux/action";
 
 const Test = () => {
-  const [value, setValue] = React.useState<number | null>(2);
+  const dispatch = useDispatch();
+  const basketItem = useSelector((state: RootStateOrAny) => state.basket);
+  console.log(basketItem);
+
+  const product = {
+    productId: "4562213997465",
+    price: 25,
+    quantity: 2
+  }
+
+  const handler = ()=> {
+    dispatch(addProductToBasket(product))    
+  }
 
   return (
-    <Box
-      sx={{
-        "& > legend": { mt: 2 },
-      }}
-    >
-      <Typography component="legend">Controlled</Typography>
-      <Rating
-        name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      />
-      <Typography component="legend">Read only</Typography>
-      <Rating name="read-only" value={value} readOnly />
-      <Typography component="legend">Disabled</Typography>
-      <Rating name="disabled" value={value} disabled />
-      <Typography component="legend">No rating given</Typography>
-      <Rating name="no-value" value={null} />
-    </Box>
+    <div>
+      {/* <Basket value={3} /> */}
+      <button onClick={handler}><h1>Click me</h1></button>
+    </div>
   );
 };
 

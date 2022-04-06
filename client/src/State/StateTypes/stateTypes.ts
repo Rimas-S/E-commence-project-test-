@@ -11,10 +11,24 @@ export type Token = {
 export type SaveToken = {
   type: typeof SAVE_TOKEN;
   payload: Token;
-}
+};
 
 export type DeleteToken = {
   type: typeof DELETE_TOKEN;
-}
+};
 
 export type TokenReducer = SaveToken | DeleteToken;
+
+// Basket Types
+export const ADD_PRODUCT = "ADD_PRODUCT";
+
+export type BasketItem = {
+  productId: string;
+  price: number;
+  quantity: number;
+};
+
+export type AddProductToBasket = {
+  type: typeof ADD_PRODUCT;
+  payload: BasketItem;
+}
