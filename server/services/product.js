@@ -19,6 +19,10 @@ const findAllData = async () => {
   return Product.find();
 };
 
+const findArrayOfIds = async (arr) => {
+  return Product.find({_id: {$in: arr}});
+};
+
 const deleteProduct = async (_id) => {
   return Product.findByIdAndRemove(_id);
 };
@@ -37,6 +41,7 @@ const addRateToUser = async (productId, rate) => {
 export default {
   create,
   findAllData,
+  findArrayOfIds,
   updateProduct,
   deleteProduct,
   findProductByName,

@@ -1,9 +1,9 @@
-import { AddProductToBasket, ADD_PRODUCT, BasketItem } from "../../StateTypes/stateTypes";
+import { AddProductToBasket, ADD_PRODUCT } from "../../StateTypes/stateTypes";
 
-const initialState: BasketItem[] = [];
+const initialState: string[] = [];
 
 export const basketReducer = (
-  state: BasketItem[] = initialState,
+  state: string[] = initialState,
   action: AddProductToBasket
 ) => {
     switch(action.type){

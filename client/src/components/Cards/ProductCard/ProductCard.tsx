@@ -1,6 +1,8 @@
 import { Rating } from "@mui/material";
 import Button from "@mui/material/Button";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addProductToBasket } from "../../../State/Redux/action";
 import MyCarousel from "../../Carousel/Carousel";
 import "./ProductCard.scss";
 
@@ -9,11 +11,15 @@ type ProductCardProps = {
   price: number;
   title: string;
   id: string;
-  value: number
+  value: number;
 };
 
-const ProductCard = ({ images, price, title, id , value }: ProductCardProps) => {
+const ProductCard = ({ images, price, title, id, value }: ProductCardProps) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const product = id;
+
   return (
     <div className="product-card">
       <div className="flex">
@@ -31,11 +37,23 @@ const ProductCard = ({ images, price, title, id , value }: ProductCardProps) => 
         <Rating name="read-only" value={value} readOnly size="small" />
 
         <div className="product-card__buttons">
-          <Button color="secondary" variant="outlined" onClick={()=> {navigate(`/productdetail/${id}`)}}>
+          <Button
+            color="info"
+            variant="contained"
+            onClick={() => {
+              navigate(`/productdetail/${id}`);
+            }}
+          >
             Detail
           </Button>
-          <Button color="success" variant="outlined">
-            Buy
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={() => {
+              dispatch(addProductToBasket(product));
+            }}
+          >
+            Add Basket
           </Button>
         </div>
       </div>

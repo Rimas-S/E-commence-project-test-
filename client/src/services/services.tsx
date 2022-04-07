@@ -58,3 +58,10 @@ export const averageRating = (array: any) => {
   averageRating = averageRating / array.length;
   return averageRating;
 };
+
+export const countDuplicatesInArray = (arr: string[]) => {
+  const result = arr.reduce((accumulator: any, value: any) => {
+    return { ...accumulator, [value]: (accumulator[value] || 0) + 1 };
+  }, {});
+  return result;
+};

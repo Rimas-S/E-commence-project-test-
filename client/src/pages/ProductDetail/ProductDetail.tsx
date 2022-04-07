@@ -6,10 +6,12 @@ import MyImageGallery from "../../components/MyImageGallery/MyImageGallery";
 import { axiosInstance } from "../../config";
 import "./ProductDetail.scss";
 import { averageRating } from "../../services/services";
+import { addProductToBasket } from "../../State/Redux/action";
+import { useDispatch } from "react-redux";
 
 const ProductDetail = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState<number | null>(0);
-
   const [data, setData] = React.useState<any>();
   const { id } = useParams();
 
@@ -51,8 +53,15 @@ const ProductDetail = () => {
               Size: {data.size}
             </h4>
             <div className="product-detail__body--detail_button">
-              <Button fullWidth variant="contained" color="secondary">
-                Add to Card
+              <Button
+                fullWidth
+                variant="contained"
+                color="secondary"
+                onClick={() => {
+                  dispatch(addProductToBasket(data._id));
+                }}
+              >
+                Add Basket
               </Button>
             </div>
             <div className="product-detail__body--detail_payment-methods flex">

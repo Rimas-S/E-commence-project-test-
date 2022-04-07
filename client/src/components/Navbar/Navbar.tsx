@@ -53,10 +53,6 @@ const Navbar = () => {
     );
   }
 
-  const handlerBasket = () => {
-    
-  };
-
   return (
     <header className="navbar">
       <div className="navbar__header container flex">
@@ -68,7 +64,7 @@ const Navbar = () => {
         />
         <div className="navbar__header--btn flex">
           <Greeting isLoggedIn={isLoggedIn} />
-          <Basket value={basketItem.length} onClick={handlerBasket} />
+          <Basket value={basketItem.length} onClick={() => navigate("/basket")} />
           <ThemeSwitch />
         </div>
       </div>

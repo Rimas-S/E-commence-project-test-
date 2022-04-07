@@ -23,6 +23,14 @@ content-type: application/json
 GET http://localhost:5000/api/v1/products
 
 ###
+GET http://localhost:5000/api/v1/products/productbyids
+content-type: application/json
+
+{
+    "productsIdsArray": ["623e0c584a8b7f02bc6dfbb8", "623e0dce4a8b7f02bc6dfbc8", "623e48949291a9b0b527911b", "623e0dce4a8b7f02bc6dfbc8", "623e0dce4a8b7f02bc6dfbc8"]
+}
+
+###
 GET http://localhost:5000/api/v1/products/623530fd987ef34223dc93c4
 
 ###

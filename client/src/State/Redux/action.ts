@@ -1,7 +1,6 @@
 import {
   AddProductToBasket,
   ADD_PRODUCT,
-  BasketItem,
   DeleteToken,
   DELETE_TOKEN,
   SaveToken,
@@ -23,7 +22,7 @@ export function deleteToken(): DeleteToken {
 }
 
 // Basket actions
-export function addProductToBasket(product: BasketItem): AddProductToBasket {
+export function addProductToBasket(product: string): AddProductToBasket {
   return {
     type: ADD_PRODUCT,
     payload: product,

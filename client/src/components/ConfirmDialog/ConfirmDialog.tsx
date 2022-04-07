@@ -4,8 +4,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
-import CheckIcon from '@mui/icons-material/Check';
-import CancelIcon from '@mui/icons-material/Cancel';
+import CheckIcon from "@mui/icons-material/Check";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 const style = {
   position: "absolute" as "absolute",
@@ -29,7 +29,7 @@ const ConfirmDialog = ({ evokeFunction, open, setOpen, value }: any) => {
   };
 
   return (
-    <div>
+    <div className="modal">
       <Modal
         open={open}
         onClose={handleClose}
@@ -45,12 +45,28 @@ const ConfirmDialog = ({ evokeFunction, open, setOpen, value }: any) => {
           >
             Delete product
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2, fontSize: 15 }}>
+          <Typography
+            id="modal-modal-description"
+            sx={{ mt: 2, mb: 2, fontSize: 15 }}
+          >
             Permanently delete product Id: {value}? You can't undo this.
           </Typography>
           <Typography sx={{ textAlign: "center" }}>
-            <Button variant="outlined" onClick={handleClose} sx={{marginRight: 5}} startIcon={<CancelIcon />}>Cancel</Button>
-            <Button variant="outlined" color="error" onClick={handleConfirm} startIcon={<CheckIcon />}>
+            <Button
+              variant="outlined"
+              onClick={handleClose}
+              sx={{ margin: 1 }}
+              startIcon={<CancelIcon />}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={handleConfirm}
+              sx={{ margin: 1 }}
+              startIcon={<CheckIcon />}
+            >
               Confirm
             </Button>
           </Typography>

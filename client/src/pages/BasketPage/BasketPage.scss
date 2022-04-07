@@ -1,0 +1,9 @@
+.basket-page {
+    margin: 2rem 0;
+    border: 1px solid;
+    &__body {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 1rem;
+    }
+}

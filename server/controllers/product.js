@@ -1,4 +1,3 @@
-import product from "../models/product.js";
 import Product from "../models/product.js";
 import ProductService from "../services/product.js";
 
@@ -52,6 +51,17 @@ export const findProduct = async (req, res) => {
 export const findAll = async (req, res) => {
   try {
     const products = await ProductService.findAllData();
+    res.json(products);
+  } catch (err) {
+    res.json(err);
+    console.log(err);
+  }
+};
+
+export const findArrayOfProducts = async (req, res) => {
+  try {
+    const { productsIdsArray } = req.body;
+    const products = await ProductService.findArrayOfIds(productsIdsArray);
     res.json(products);
   } catch (err) {
     res.json(err);

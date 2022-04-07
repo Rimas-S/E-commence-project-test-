@@ -22,13 +22,7 @@ export type TokenReducer = SaveToken | DeleteToken;
 // Basket Types
 export const ADD_PRODUCT = "ADD_PRODUCT";
 
-export type BasketItem = {
-  productId: string;
-  price: number;
-  quantity: number;
-};
-
 export type AddProductToBasket = {
   type: typeof ADD_PRODUCT;
-  payload: BasketItem;
-}
+  payload: string;
+};

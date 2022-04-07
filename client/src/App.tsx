@@ -14,6 +14,7 @@ import UserList from "./components/UserList/UserList";
 import UpdateUser from "./components/UpdateUser/UpdateUser";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Footer from "./components/Footer/Footer";
+import { BasketPage } from "./pages/BasketPage/BasketPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="shop" element={<Shop />} />
           <Route path="productdetail/:id" element={<ProductDetail />} />
           <Route path="test" element={<Test />} />
+          <Route path="basket" element={<BasketPage />} />
           <Route path="admin" element={<Admin />}>
             <Route path="productlist" element={<ProductList />} />
             <Route
