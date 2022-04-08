@@ -33,6 +33,17 @@
       &-content {
         .content-item {
           padding: 1rem 0;
+
+          &__quantity-btn {
+            border: solid 1px var(--backgroundColorThird);
+            border-radius: 5rem;
+          }
+
+          .icon {
+            vertical-align: middle;
+            font-size: 1.8rem;
+            cursor: pointer;
+          }
         }
 
         .content-empty {

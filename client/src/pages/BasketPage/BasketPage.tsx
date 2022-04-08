@@ -1,12 +1,21 @@
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import React from "react";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../config";
 import { countItemInArray } from "../../services/services";
 import "./BasketPage.scss";
+import {
+  addProductToBasket,
+  decrementProductInBasket,
+  deleteProductFromBasket,
+} from "../../State/Redux/action";
 
 export const BasketPage = () => {
+  const dispatch = useDispatch();
   const [data, setData] = React.useState<any>(null);
   const products = useSelector((state: RootStateOrAny) => state.basket);
   const navigate = useNavigate();
@@ -72,11 +81,38 @@ export const BasketPage = () => {
                         <p>Size: {product.size}</p>
                       </div>
                     </div>
-                    <p>{countItemInArray(products, product._id)}</p>
+                    <div className="content-item__quantity-btn">
+                      <IconButton
+                        disableRipple={true}
+                        onClick={() => {
+                          dispatch(addProductToBasket(product._id));
+                        }}
+                      >
+                        <AddCircleIcon />
+                      </IconButton>
+                      {countItemInArray(products, product._id)}
+                      <IconButton
+                        disableRipple={true}
+                        onClick={() => {
+                          dispatch(decrementProductInBasket(product._id));
+                        }}
+                      >
+                        <RemoveCircleIcon />
+                      </IconButton>
+                    </div>
                     <p>
                       <span>&#8364;</span>
                       {countItemInArray(products, product._id) * product.price}
                     </p>
+                    <div>
+                      <IconButton
+                        onClick={() => {
+                          dispatch(deleteProductFromBasket(product._id));
+                        }}
+                      >
+                        <DeleteForeverIcon className="icon" />
+                      </IconButton>
+                    </div>
                   </div>
                 ))
               ) : (

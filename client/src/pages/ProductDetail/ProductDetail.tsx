@@ -1,5 +1,6 @@
 import { Button, Rating, Typography } from "@mui/material";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import React from "react";
 import { useParams } from "react-router-dom";
 import MyImageGallery from "../../components/MyImageGallery/MyImageGallery";
@@ -57,6 +58,7 @@ const ProductDetail = () => {
                 fullWidth
                 variant="contained"
                 color="secondary"
+                endIcon={<AddShoppingCartIcon />}
                 onClick={() => {
                   dispatch(addProductToBasket(data._id));
                 }}
