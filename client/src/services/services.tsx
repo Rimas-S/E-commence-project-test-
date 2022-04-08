@@ -59,9 +59,14 @@ export const averageRating = (array: any) => {
   return averageRating;
 };
 
-export const countDuplicatesInArray = (arr: string[]) => {
-  const result = arr.reduce((accumulator: any, value: any) => {
-    return { ...accumulator, [value]: (accumulator[value] || 0) + 1 };
-  }, {});
-  return result;
+// export const countDuplicatesInArray = (arr: string[]) => {
+//   const result = arr.reduce((accumulator: any, value: any) => {
+//     return { ...accumulator, [value]: (accumulator[value] || 0) + 1 };
+//   }, {});
+//   return result;
+// };
+
+export const countItemInArray = (arr: string[], item: string) => {
+  const count = arr.filter((x: string) => x === item).length;
+  return count;
 };

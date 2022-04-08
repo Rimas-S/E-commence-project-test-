@@ -1,9 +1,51 @@
 .basket-page {
-    margin: 2rem 0;
-    border: 1px solid;
-    &__body {
-        display: grid;
-        grid-template-columns: 1fr 340px;
-        gap: 1rem;
+  // width: 100%;
+  margin: 2rem 0;
+  color: var(--mainFontColor);
+  //   border: 1px solid;
+
+  img {
+    width: 60px;
+  }
+
+  .underline {
+    border-bottom: solid 0.5px var(--backgroundColorThird);
+  }
+
+  .basket-grid {
+    display: grid;
+    grid-template-columns: auto 100px 100px 100px;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 1rem;
+
+    &--left {
+      &-header {
+        background-color: var(--backgroundColorThird);
+        padding: 1rem 0;
+      }
+
+      &-content {
+        .content-item {
+          padding: 1rem 0;
+        }
+
+        .content-empty {
+          text-align: center;
+          padding: 2rem 0;
+        }
+
+        .flex {
+          justify-content: flex-start;
+          gap: 1rem;
+          text-align: start;
+        }
+      }
     }
+  }
 }

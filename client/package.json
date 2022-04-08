@@ -36,11 +36,13 @@
     "react-custom-back-to-top-button": "^1.0.2",
     "react-dom": "^17.0.2",
     "react-image-gallery": "^1.2.7",
+    "react-numeric-input": "^2.2.3",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-scroll": "^1.8.6",
     "redux-thunk": "^2.4.1",
+    "rsuite": "^5.8.0",
     "sass": "^1.49.9",
     "typescript": "^4.6.2",
     "web-vitals": "^2.1.4",
@@ -72,6 +74,7 @@
   },
   "devDependencies": {
     "@types/react-image-gallery": "^1.0.5",
+    "@types/react-numeric-input": "^2.2.4",
     "@types/react-scroll": "^1.8.3"
   }
 }
