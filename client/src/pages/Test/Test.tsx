@@ -1,7 +1,7 @@
 import * as React from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
-import { addProductToBasket, decrementProductInBasket, deleteProductFromBasket } from "../../State/Redux/action";
+import { deleteProductFromBasket } from "../../State/Redux/action";
 
 const Test = () => {
   const dispatch = useDispatch();

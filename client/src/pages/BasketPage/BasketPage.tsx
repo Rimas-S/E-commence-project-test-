@@ -102,7 +102,13 @@ export const BasketPage = () => {
                     </div>
                     <p>
                       <span>&#8364;</span>
-                      {countItemInArray(products, product._id) * product.price}
+
+                      {Math.round(
+                        (countItemInArray(products, product._id) *
+                          product.price +
+                          Number.EPSILON) *
+                          100
+                      ) / 100}
                     </p>
                     <div>
                       <IconButton
