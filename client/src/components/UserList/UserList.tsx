@@ -56,7 +56,7 @@ const UsertList = () => {
     { field: "address", headerName: "Address", minWidth: 150, flex: 1 },
     { field: "country", headerName: "Country", minWidth: 100, flex: 1 },
     { field: "city", headerName: "City", minWidth: 80, flex: 1 },
-    { field: "role", headerName: "Role", minWidth: 80, flex: 1 },
+    { field: "role", headerName: "Role", minWidth: 70, flex: 1 },
     {
       field: "Action",
       width: 160,

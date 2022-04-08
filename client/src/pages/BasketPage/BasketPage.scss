@@ -14,7 +14,7 @@
 
   .basket-grid {
     display: grid;
-    grid-template-columns: auto 100px 100px 100px;
+    grid-template-columns: auto 110px 100px 100px;
     align-items: center;
     text-align: center;
   }
@@ -55,6 +55,52 @@
           justify-content: flex-start;
           gap: 1rem;
           text-align: start;
+        }
+      }
+    }
+
+    &--right {
+      &_content-1 {
+        .grid {
+          gap: 0.5rem;
+          padding: 0.5rem;
+
+          .grid-item-1 {
+            justify-self: start;
+          }
+
+          .grid-item-2 {
+            justify-self: end;
+            font-weight: 900;
+          }
+        }
+      }
+      &_content-2 {
+        margin: 1rem 0;
+        .banner {
+          padding: 0.3rem;
+          background-color: var(--backgroundColorSecondary);
+          color: #fff;
+          text-align: center;
+
+          &__code {
+            color: #000;
+          }
+
+          p {
+            font-size: 0.6rem;
+          }
+        }
+      }
+
+      &_content-3 {
+        margin: 0.5rem 0;
+        .a {
+          vertical-align: middle;
+        }
+
+        img {
+          width: 100%;
         }
       }
     }

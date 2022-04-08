@@ -2,7 +2,6 @@ import React from "react";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import MuiLoader from "../../components/MuiLoader/MuiLoader";
 import { axiosInstance } from "../../config";
-import BackToTop from "react-custom-back-to-top-button";
 
 import "./Shop.scss";
 import { averageRating } from "../../services/services";
@@ -50,14 +49,6 @@ const Shop = () => {
           <MuiLoader size={100} />
         </div>
       )}
-
-      {/* This creates Warning: findDOMNode is deprecated in StrictMode.*/}
-      <BackToTop
-        style={{
-          opacity: 0.7,
-          backgroundColor: "var(--backgroundColorSecondary)",
-        }}
-      />
     </div>
   );
 };
