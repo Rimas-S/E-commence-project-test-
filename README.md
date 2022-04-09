@@ -12,7 +12,7 @@ You can enter as an admin with provided below admin login and test admin feature
 ##### Email Address: *admin@admin.com*
 ##### Password: *admin*
 
-Note: in product update part, there is small problem with picture upload input styling after update product. But it does not effect app work and I will fix it.
+*Note: in product update part, there is small problem with picture upload input styling after update product. But it does not effect app work and I will fix it.*
 
 Path to product and user list are in the pictures:
 
