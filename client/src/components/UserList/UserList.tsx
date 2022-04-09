@@ -119,7 +119,6 @@ const UsertList = () => {
       .then(function (response) {
         // handle success
         setData(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         // handle error

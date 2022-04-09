@@ -94,19 +94,20 @@ const UserMenu = () => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/myaccount");
+          }}
+        >
           <Avatar /> My account
         </MenuItem>
         {role === "admin" ? (
           <MenuItem
             onClick={() => {
-              navigate("/admin");
+              navigate("/admin/dashboard");
             }}
           >
-            <Avatar /> Admin
+            <Avatar /> Admin Dashboard
           </MenuItem>
         ) : null}
         <Divider />

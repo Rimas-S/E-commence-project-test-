@@ -41,7 +41,6 @@ const UpdateUser = () => {
         if (response.data._id) {
           resetInput(response.data);
         }
-        console.log(response.data);
       })
       .catch(function (error) {
         setSuccessAndError({ error: error.message });

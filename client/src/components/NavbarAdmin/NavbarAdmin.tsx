@@ -1,4 +1,5 @@
 import { Paper } from "@mui/material";
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { Link, useLocation } from "react-router-dom";
 import "./NavbarAdmin.scss";
 
@@ -9,6 +10,16 @@ const NavbarAdmin = () => {
     <div className="navbar-admin">
       <div className="container navbar-admin__main">
         <Paper className="navbar-admin__main--paper" elevation={8}>
+        <Link
+            className={`navbar-admin__main--link${
+              location.includes("dashboard")
+                ? " navbar-admin__main--highlight"
+                : ""
+            }`}
+            to="/admin/dashboard"
+          >
+            <DashboardIcon className="icon"/>
+          </Link>
           <Link
             className={`navbar-admin__main--link${
               location.includes("productlist")

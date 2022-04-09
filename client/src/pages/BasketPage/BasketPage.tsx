@@ -111,7 +111,6 @@ export const BasketPage = () => {
                     </div>
                     <p>
                       <span>&#8364;</span>
-
                       {Math.round(
                         (countItemInArray(products, product._id) *
                           product.price +
@@ -143,16 +142,24 @@ export const BasketPage = () => {
                   <div className="grid">
                     <p className="grid-item-1">Subtotal</p>
                     <p className="grid-item-2">
+                      <span>&#8364;</span>
                       {myRound(totalSum() / (1 + VAT))}
                     </p>
                     <p className="grid-item-1">VAT (20%)</p>
                     <p className="grid-item-2">
-                      {myRound(totalSum() - (totalSum() / (1 + VAT)))}
+                      <span>&#8364;</span>
+                      {myRound(totalSum() - totalSum() / (1 + VAT))}
                     </p>
                     <p className="grid-item-1">Shipping</p>
-                    <p className="grid-item-2">{SHIPPING}</p>
+                    <p className="grid-item-2">
+                      <span>&#8364;</span>
+                      {SHIPPING}
+                    </p>
                     <p className="grid-item-1">Free Shipping</p>
-                    <p className="grid-item-2">{FREESHIPPING}</p>
+                    <p className="grid-item-2">
+                      <span>&#8364;</span>
+                      {FREESHIPPING}
+                    </p>
                   </div>
                   <hr
                     style={{

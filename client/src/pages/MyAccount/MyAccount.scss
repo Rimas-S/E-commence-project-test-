@@ -1,0 +1,9 @@
+.myaccount {
+  padding: 1rem 0;
+  height: 20rem;
+
+  .flex {
+    height: inherit;
+    flex-direction: column;
+  }
+}

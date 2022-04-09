@@ -15,6 +15,8 @@ import UpdateUser from "./components/UpdateUser/UpdateUser";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Footer from "./components/Footer/Footer";
 import { BasketPage } from "./pages/BasketPage/BasketPage";
+import { MyAccount } from "./pages/MyAccount/MyAccount";
+import { AdminDashboard } from "./components/AdminDashboard/AdminDashboard";
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
           <Route path="productdetail/:id" element={<ProductDetail />} />
           <Route path="test" element={<Test />} />
           <Route path="basket" element={<BasketPage />} />
+          <Route path="myaccount" element={<MyAccount />} />
           <Route path="admin" element={<Admin />}>
+            <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="productlist" element={<ProductList />} />
             <Route
               path="productlist/createproduct"
