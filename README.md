@@ -12,6 +12,8 @@ You can enter as an admin with provided below admin login and test admin feature
 ##### Email Address: *admin@admin.com*
 ##### Password: *admin*
 
+Note: in product update part, there is small problem with picture upload input styling after update product. But it does not effect app work and I will fix it.
+
 Path to product and user list are in the pictures:
 
 ![E-Commerce WebApp -1](https://user-images.githubusercontent.com/96993500/162576361-fac89453-a1eb-4257-a8c3-e6bb888f4674.png)
