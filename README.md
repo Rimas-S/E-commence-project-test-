@@ -6,7 +6,7 @@ You can sign up and sign in. But user profile page is not completed.
 
 ------------
 
-You can enter as an admin with provided below login info and test admin features (add, update and delete products and users). Please, do not delete existing product or user, if you want to test create test product or sign up user and then modify it or delete as admin.:tw-1f609:
+You can enter as an admin with provided below login info and test admin features (add, update and delete products and users). Please, do not delete existing product or user, if you want to test create test product or sign up user and then modify it or delete as admin.
 
 #### Admin user login info
 ##### Email Address: *admin@admin.com*
