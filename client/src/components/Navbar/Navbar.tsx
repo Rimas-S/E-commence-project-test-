@@ -10,6 +10,7 @@ import { Token } from "../../State/StateTypes/stateTypes";
 import jwt_decode from "jwt-decode";
 import { deleteToken } from "../../State/Redux/action";
 import Basket from "../Basket/Basket";
+import { MyDrawer } from "../MyDrawer/MyDrawer";
 
 const Navbar = () => {
   const navbar = ["Home", "Shop", "Contact", "Test"];
@@ -43,12 +44,20 @@ const Navbar = () => {
   function Greeting(props: any) {
     const isLoggedIn = props.isLoggedIn;
     if (isLoggedIn === "true") {
-      return <UserMenu />;
+      return (
+        <div className="navbar-visibility">
+          <UserMenu />
+        </div>
+      );
     }
     return (
       <>
-        <SignIn />
-        <SignUp />
+        <div className="navbar-visibility">
+          <SignIn />
+        </div>
+        <div className="navbar-visibility">
+          <SignUp />
+        </div>
       </>
     );
   }
@@ -64,7 +73,13 @@ const Navbar = () => {
         />
         <div className="navbar__header--btn flex">
           <Greeting isLoggedIn={isLoggedIn} />
-          <Basket value={basketItem.length} onClick={() => navigate("/basket")} />
+          <div className="sidebar-visibility">
+            <MyDrawer isLoggedIn={isLoggedIn} />
+          </div>
+          <Basket
+            value={basketItem.length}
+            onClick={() => navigate("/basket")}
+          />
           <ThemeSwitch />
         </div>
       </div>

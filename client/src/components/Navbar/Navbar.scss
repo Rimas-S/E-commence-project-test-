@@ -36,8 +36,21 @@
       transition: text-shadow 0.3s;
 
       &:hover {
-        text-shadow: 0 0 4px var(--headerFontColor), 0 0 4px var(--headerFontColor);
+        text-shadow: 0 0 4px var(--headerFontColor),
+          0 0 4px var(--headerFontColor);
       }
     }
   }
+  @media (max-width: 600px) {
+    .navbar-visibility {
+      display: none;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .sidebar-visibility {
+      display: none;
+    }
+  }
+
 }
