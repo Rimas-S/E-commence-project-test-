@@ -26,19 +26,26 @@ const Navbar = () => {
   const basketItem = useSelector((state: RootStateOrAny) => state.basket);
 
   useEffect(() => {
+    let timerId: NodeJS.Timeout;
     if (checkToken === null) {
       setisLoggedIn("false");
     } else {
       const token = checkToken.token;
       const decoded: any = jwt_decode(token);
       const date = new Date(decoded.exp * 1000) > new Date();
+      const time = decoded.exp * 1000 - new Date().getTime();
+
+      timerId = setTimeout(() => {
+        dispatch(deleteToken());
+      }, time);
+
       if (date) {
         setisLoggedIn("true");
       } else {
         setisLoggedIn("false");
-        dispatch(deleteToken());
       }
     }
+    return () => clearTimeout(timerId);
   }, [checkToken, dispatch]);
 
   function Greeting(props: any) {

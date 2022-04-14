@@ -7,8 +7,9 @@ import MySnackbar from "../Snackbar/MyScanckbar";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import MuiLoader from "../MuiLoader/MuiLoader";
 
-import './ProductList.scss'
+import "./ProductList.scss";
 import { axiosInstance } from "../../config";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -34,6 +35,7 @@ const ProductList = () => {
 
   let productRow;
   const [data, setData] = React.useState<any>();
+  const token = useSelector((state: any) => state.token?.token);
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 250 },
@@ -94,7 +96,9 @@ const ProductList = () => {
   // Delete pruduct handler
   const handlerDeleteProduct = (id: string) => {
     axiosInstance
-      .delete(`/products/${id}`)
+      .delete(`/products/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then(function (response) {
         // handle success
         setDeletedData(response.data);
@@ -110,7 +114,9 @@ const ProductList = () => {
 
   React.useEffect(() => {
     axiosInstance
-      .get("/products")
+      .get("/products", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then(function (response) {
         // handle success
         setData(response.data);
@@ -119,7 +125,7 @@ const ProductList = () => {
         // handle error
         console.log(error);
       });
-  }, [deletedData]);
+  }, [deletedData, token]);
 
   if (data) {
     productRow = data.map((el: any) => {

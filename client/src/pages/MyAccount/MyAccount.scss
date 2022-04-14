@@ -1,8 +1,30 @@
 .myaccount {
   padding: 1rem 0;
-  
+
+  &__header {
+    padding-bottom: 1rem;
+  }
+
   &__body {
     display: grid;
     grid-template-columns: 300px auto;
+    gap: 1rem;
+
+    &--left {
+      &-list {
+        background-color: var(--backgroundColorSoft);
+        margin-bottom: 1rem;
+      }
+
+      &-contact_info {
+        padding: 1rem 1rem;
+        background-color: var(--backgroundColorSoft);
+        text-align: center;
+
+        .grid1gap1 {
+          margin-top: 1rem;
+        }
+      }
+    }
   }
 }

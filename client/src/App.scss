@@ -24,6 +24,12 @@
   gap: 1rem;
 }
 
+.grid1gap1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
 .card {
   color: var(--mainFontColor);
   background-color: var(--backgroundColorMode);

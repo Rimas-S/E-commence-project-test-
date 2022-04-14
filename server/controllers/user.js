@@ -74,11 +74,16 @@ export const findUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     const { id: _id } = req.params;
-    const user = await UserService.deleteUser(_id);
-    if (user) {
-      res.json(user);
+    const userCheck = await UserService.findUserById(_id);
+    if (userCheck.role === "admin") {
+      res.json({ error: "You do not have permit to delete this user" });
     } else {
-      res.json({ error: "Id does not exist" });
+      const user = await UserService.deleteUser(_id);
+      if (user) {
+        res.json(user);
+      } else {
+        res.json({ error: "Id does not exist" });
+      }
     }
   } catch (err) {
     res.json({ error: err.message });
@@ -90,13 +95,15 @@ export const updateUser = async (req, res) => {
   try {
     const { id: _id } = req.params;
     const user = req.body;
-    const updatedUser = await UserService.updateUser(_id, user, { new: true })
+    const updatedUser = await UserService.updateUser(_id, user, { new: true });
     if (updatedUser) {
-      res.json({success: "Account updated successfully", ...updatedUser._doc});
+      res.json({
+        success: "Account updated successfully",
+        ...updatedUser._doc,
+      });
     } else {
       res.json({ error: "User does not exist!" });
     }
-    
   } catch (err) {
     res.json({ error: err.message });
     console.log(err);

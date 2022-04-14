@@ -12,6 +12,7 @@ import { fileToStringArray } from "../../services/services";
 import { productSchema } from "./ProductSchema";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../../config";
+import { useSelector } from "react-redux";
 
 const UpdateProduct = () => {
   const [successAndError, setSuccessAndError] = React.useState({});
@@ -26,6 +27,7 @@ const UpdateProduct = () => {
     describtion: "",
   });
   const [currentImages, setCurrentImages] = React.useState<any>([""]);
+  const token = useSelector((state: any) => state.token?.token);
 
   useEffect(() => {
     if (productById.image) setCurrentImages(productById.image);
@@ -43,7 +45,6 @@ const UpdateProduct = () => {
       .then(function (response) {
         setProductById(response.data);
         setSuccessAndError(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         setSuccessAndError({ error: error.message });
@@ -58,13 +59,12 @@ const UpdateProduct = () => {
 
   // update data in database
   const updateProduct = (value: any) => {
-    console.log(value);
-
     axiosInstance
-      .put(`/products/${id}`, value)
+      .put(`/products/${id}`, value, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then(function (response) {
         setSuccessAndError(response.data);
-        console.log(response);
       })
       .catch(function (error) {
         setSuccessAndError({ error: error.message });

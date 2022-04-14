@@ -1,0 +1,11 @@
+.my-user-info {
+  h3 {
+    padding: 1rem 0.5rem;
+    background-color: var(--backgroundColorSoft);
+  }
+
+  &__content {
+    padding: 1rem 0.5rem;
+    background-color: var(--backgroundColorSoft);
+  }
+}

@@ -97,12 +97,13 @@ const UsertList = () => {
   // Delete pruduct handler
   const handlerDeleteProduct = (id: string) => {
     axiosInstance
-      .delete(`/users/${id}`)
+      .delete(`/users/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then(function (response) {
         // handle success
         setDeletedData(response.data);
         setSuccessAndError(response.data);
-        console.log(response);
       })
       .catch(function (error) {
         // handle error
