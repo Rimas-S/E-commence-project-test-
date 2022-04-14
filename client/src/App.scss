@@ -30,6 +30,18 @@
   gap: 1rem;
 }
 
+.grid2gap1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.grid4gap1 {
+  display: grid;
+  grid-template-columns:  1fr 1fr  1fr 1fr;
+  gap: 1rem;
+}
+
 .card {
   color: var(--mainFontColor);
   background-color: var(--backgroundColorMode);
@@ -43,4 +55,16 @@
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+.facebook {
+  color: var(--facebook);
+}
+
+.linkedin {
+  color: var(--linkedin);
+}
+
+.github {
+  color: var(--github);
 }

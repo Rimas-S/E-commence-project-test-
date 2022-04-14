@@ -1,3 +1,4 @@
+import { Link, Typography } from "@mui/material";
 import MySnackbar from "../components/Snackbar/MyScanckbar";
 
 //* Convert resBlob to base64
@@ -69,4 +70,22 @@ export const averageRating = (array: any) => {
 export const countItemInArray = (arr: string[], item: string) => {
   const count = arr.filter((x: string) => x === item).length;
   return count;
+};
+
+export const Copyright = (props: any) => {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://ecommerceeasy.herokuapp.com/">
+        ecommerceeasy
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
 };

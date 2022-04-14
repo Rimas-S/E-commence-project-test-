@@ -1,6 +1,28 @@
 .footer {
-    height: 5rem;
-    text-align: center;
-    background-color: var(--backgroundColorPrimary);
-    color: var(--headerFontColor);
+  padding: 1rem 0.5rem;
+  background-color: var(--backgroundColorPrimary);
+  color: var(--headerFontColor);
+
+  .grid4gap1 {
+    justify-items: center;
+    @media only screen and (max-width: 850px) {
+      grid-template-columns: 1fr 1fr;
+      justify-items: start;
+      gap: 2rem;
+    }
+  }
+
+  &__corporate {
+    .link {
+      text-decoration: none;
+      color: var(--headerFontColor);
+      font-size: 0.9rem;
+    }
+  }
+
+  &__social-media {
+    .icon {
+      font-size: 2.5rem;
+    }
+  }
 }

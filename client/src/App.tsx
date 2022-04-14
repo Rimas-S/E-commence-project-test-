@@ -22,6 +22,9 @@ import { MyDiscounts } from "./components/MyDiscounts/MyDiscounts";
 import { MyUserInfo } from "./components/MyUserInfo/MyUserInfo";
 import { Help } from "./components/Help/Help";
 import { RequireAuth } from "./services/RequireAuth";
+import { AboutUs } from "./pages/AboutUs/AboutUs";
+import { HelpAndContact } from "./pages/HelpAndContact/HelpAndContact";
+import { DataPreferences } from "./pages/DataPreferences/DataPreferences";
 
 function App() {
   return (
@@ -62,6 +65,9 @@ function App() {
 
           <Route path="signin" element={<SignIn />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="helpandcontact" element={<HelpAndContact />} />
+          <Route path="datapreferences" element={<DataPreferences />} />
         </Routes>
       </div>
 

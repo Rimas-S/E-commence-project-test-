@@ -9,8 +9,21 @@
     display: grid;
     grid-template-columns: 300px auto;
     gap: 1rem;
+    @media only screen and (max-width: 768px) {
+      grid-template-columns: 50px auto;     
+    }
+
+    .menu-icon {
+      display: none;
+      @media only screen and (max-width: 768px) {
+        display: block;
+      }
+    }
 
     &--left {
+      @media only screen and (max-width: 768px) {
+        display: none;
+      }
       &-list {
         background-color: var(--backgroundColorSoft);
         margin-bottom: 1rem;
