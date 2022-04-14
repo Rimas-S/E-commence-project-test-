@@ -1,4 +1,4 @@
-# E-commence-project
+# E-commerce-project
 #### Link to website: [ecommerceeasy](https://ecommerceeasy.herokuapp.com "ecommerceeasy")
 
 ------------
