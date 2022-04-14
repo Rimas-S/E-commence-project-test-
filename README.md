@@ -2,7 +2,7 @@
 #### Link to website: [ecommerceeasy](https://ecommerceeasy.herokuapp.com "ecommerceeasy")
 
 ------------
-You can sign up and sign in. But user profile page is not completed.
+You can sign up and sign in.
 
 ------------
 
