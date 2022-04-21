@@ -103,7 +103,6 @@ const ProductList = () => {
         // handle success
         setDeletedData(response.data);
         setSuccessAndError(response.data);
-        console.log(response);
       })
       .catch(function (error) {
         // handle error

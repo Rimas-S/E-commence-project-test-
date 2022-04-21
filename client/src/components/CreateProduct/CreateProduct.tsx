@@ -12,9 +12,11 @@ import { productSchema } from "./ProductSchema";
 
 import "./CreateProduct.scss";
 import { axiosInstance } from "../../config";
+import { useSelector } from "react-redux";
 
 const CreateProduct = () => {
   const [successAndError, setSuccessAndError] = React.useState({});
+  const token = useSelector((state: any) => state.token?.token);
 
   // Initial values
   const initialValues = {
@@ -30,7 +32,9 @@ const CreateProduct = () => {
   // saving data in database
   const postProduct = (value: any) => {
     axiosInstance
-      .post("/products", value)
+      .post("/products", value, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then(function (response) {
         setSuccessAndError(response.data);
       })
