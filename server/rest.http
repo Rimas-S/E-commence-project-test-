@@ -68,8 +68,8 @@ POST http://localhost:5000/api/v1/users/login
 content-type: application/json
 
 {
-    "email": "bmw_x1@yahoo.com", 
-    "password": "72111984"
+    "email": "test@gmail.com", 
+    "password": "test"
 }
 
 ###
@@ -108,3 +108,21 @@ content-type: application/json
     "src": ["ghfhgjghfjfgjhfghj", "ssdsdsdsd"]  
 }
 
+###
+POST http://localhost:5000/api/v1/orders
+content-type: application/json
+
+{
+  "userId": "623fb36cd5ff3fd78d9bf349",
+  "products": [
+      {"id": "623530fd987ef34223dc93c4",
+      "quantity": 2,
+      "price": 2.99
+      }
+      ],
+  "subTotal": 5,
+  "vat": 1,
+  "shipping": 0.99,
+  "freeShipping": 0,
+  "totalAmound": 8
+}
