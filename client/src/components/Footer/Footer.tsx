@@ -19,7 +19,7 @@ const Footer = () => {
           <Link className="link" to={"aboutus"}>
             About Us
           </Link>
-          <Link className="link" to={"helpandcontact"}>
+          <Link className="link" to={"contact"}>
             Help & Contact
           </Link>
           <Link className="link" to={"datapreferences"}>

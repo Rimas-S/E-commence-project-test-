@@ -10,13 +10,14 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { deleteToken } from "../../State/Redux/action";
 
 const UserMenu = () => {
   // Navigation
   const navigate = useNavigate();
+  const location: string = useLocation().pathname;
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -30,7 +31,7 @@ const UserMenu = () => {
   const dispatch = useDispatch();
   const handlerLogout = () => {
     dispatch(deleteToken());
-    navigate("/");
+    navigate(`${location}`);
   };
 
   // Admin role setup

@@ -14,6 +14,7 @@ import {
   decrementProductInBasket,
   deleteProductFromBasket,
 } from "../../State/Redux/action";
+import { Token } from "../../State/StateTypes/stateTypes";
 
 export const BasketPage = () => {
   const VAT = 0.2;
@@ -23,6 +24,9 @@ export const BasketPage = () => {
   const dispatch = useDispatch();
   const [data, setData] = React.useState<any>(null);
   const products = useSelector((state: RootStateOrAny) => state.basket);
+  const user: Token | null = useSelector(
+    (state: RootStateOrAny) => state.token?.userId
+  );
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -50,6 +54,32 @@ export const BasketPage = () => {
 
   const myRound = (number: number) => {
     return Math.round((number + Number.EPSILON) * 100) / 100;
+  };
+
+  // order checkout
+  const handlerOrderCheckout = () => {
+    const orderedProductsObjectList: {
+      id: string;
+      quantity: number;
+      price: number;
+    }[] = [];
+    data?.forEach((element: any) => {
+      orderedProductsObjectList.push({
+        id: element._id,
+        quantity: countItemInArray(products, element._id),
+        price: element.price,
+      });
+    });
+    const order = {
+      userId: user,
+      products: orderedProductsObjectList,
+      subTotal: myRound(totalSum() / (1 + VAT)),
+      vat: myRound(totalSum() - totalSum() / (1 + VAT)),
+      shipping: SHIPPING,
+      freeShipping: FREESHIPPING,
+      totalAmound: myRound(totalSum() + SHIPPING + FREESHIPPING),
+    };
+    return order;
   };
 
   return (
@@ -84,7 +114,7 @@ export const BasketPage = () => {
                     className="content-item underline basket-grid"
                   >
                     <div className="flex">
-                      <img src={product.image[0]} alt="" />
+                      <img src={product?.image[0]} alt="" />
                       <div>
                         <p>{product.name}</p>
                         <p>Size: {product.size}</p>
@@ -178,6 +208,11 @@ export const BasketPage = () => {
                     className="grid-item-btn"
                     fullWidth
                     variant="contained"
+                    onClick={() =>
+                      user
+                        ? console.log(handlerOrderCheckout())
+                        : navigate("/signin")
+                    }
                   >
                     Checkout
                   </Button>
