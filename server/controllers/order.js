@@ -6,7 +6,7 @@ export const createOrder = async (req, res) => {
     const {
       userId,
       products,
-      quantity,
+      shippingAddress,
       subTotal,
       vat,
       shipping,
@@ -17,15 +17,13 @@ export const createOrder = async (req, res) => {
     const order = new Order({
       userId,
       products,
-      quantity,
+      shippingAddress,
       subTotal,
       vat,
       shipping,
       freeShipping,
       totalAmound,
     });
-
-    console.log(req.body);
 
     await OrderService.create(order);
     res.json({ success: "Successfully saved.", orderId: order._id });

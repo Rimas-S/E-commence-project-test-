@@ -120,6 +120,16 @@ content-type: application/json
       "price": 2.99
       }
       ],
+    "shippingAddress": {
+        "firstName": "Samir",
+        "lastName": "Aliyev",
+        "addressLine1": "Hansastrasse 24",
+        "addressLine2": "Hansastrasse 22",
+        "city": "Soest",
+        "region": "NRW",
+        "postalCode": "59494",
+        "country": "Germany"
+      },
   "subTotal": 5,
   "vat": 1,
   "shipping": 0.99,

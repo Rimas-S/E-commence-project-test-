@@ -12,6 +12,16 @@ const orderSchema = new mongoose.Schema({
       price: Number,
     },
   ],
+  shippingAddress: {
+    firstName: String,
+    lastName: String,
+    addressLine1: String,
+    addressLine2: String,
+    city: String,
+    region: String,
+    postalCode: String,
+    country: String
+  },
   subTotal: Number,
   vat: Number,
   shipping: { type: Number, default: 0 },
