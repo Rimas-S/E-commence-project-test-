@@ -2,20 +2,24 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { setCheckoutStep } from "../../State/Redux/action";
 
 export default function AddressForm() {
-  const value = new FormData();
-  console.log(value.values());
+  const dispatch = useDispatch();
+  const submitHandler = () => {
+    dispatch(setCheckoutStep(1));
+    const value = new FormData();
+    console.log(value.entries());
+  };
 
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
-      <Box component="form">
+      <Box component="form" onSubmit={submitHandler}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -102,15 +106,12 @@ export default function AddressForm() {
               variant="standard"
             />
           </Grid>
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
-              label="Use this address for payment details"
-            />
-          </Grid>
         </Grid>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button type="submit" variant="contained" sx={{ mt: 3, ml: 1 }}>
+            next
+          </Button>
+        </Box>
       </Box>
     </React.Fragment>
   );
