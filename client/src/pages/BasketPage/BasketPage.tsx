@@ -3,7 +3,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import PaymentIcon from "@mui/icons-material/Payment";
-import React from "react";
+import React, { useRef } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../config";
@@ -13,10 +13,13 @@ import {
   addProductToBasket,
   decrementProductInBasket,
   deleteProductFromBasket,
+  saveCartProducts,
 } from "../../State/Redux/action";
-import { Token } from "../../State/StateTypes/stateTypes";
+import { CheckoutModal } from "../../components/Checkout/CheckoutModal";
 
 export const BasketPage = () => {
+  const showCheckout: any = useRef();
+
   const VAT = 0.2;
   const SHIPPING = 3.99;
   const FREESHIPPING = 0;
@@ -24,7 +27,7 @@ export const BasketPage = () => {
   const dispatch = useDispatch();
   const [data, setData] = React.useState<any>(null);
   const products = useSelector((state: RootStateOrAny) => state.basket);
-  const user: Token | null = useSelector(
+  const user: string | null = useSelector(
     (state: RootStateOrAny) => state.token?.userId
   );
   const navigate = useNavigate();
@@ -79,7 +82,9 @@ export const BasketPage = () => {
       freeShipping: FREESHIPPING,
       totalAmound: myRound(totalSum() + SHIPPING + FREESHIPPING),
     };
-    return order;
+    // write redux
+    dispatch(saveCartProducts(order));
+    showCheckout.current.handleOpen();
   };
 
   return (
@@ -209,9 +214,7 @@ export const BasketPage = () => {
                     fullWidth
                     variant="contained"
                     onClick={() =>
-                      user
-                        ? console.log(handlerOrderCheckout())
-                        : navigate("/signin")
+                      user ? handlerOrderCheckout() : navigate("/signin")
                     }
                   >
                     Checkout
@@ -237,6 +240,7 @@ export const BasketPage = () => {
             </div>
           </div>
         </div>
+        <CheckoutModal ref={showCheckout} />
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ export const createOrder = async (req, res) => {
     });
 
     await OrderService.create(order);
-    res.json({ success: "Successfully saved.", orderId: order._id });
+    res.json({ success: "Successfully saved!", orderId: order._id });
   } catch (err) {
     console.log(err);
     res.json({

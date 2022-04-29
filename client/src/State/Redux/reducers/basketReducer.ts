@@ -1,6 +1,8 @@
 import {
   AddProductToBasket,
   ADD_PRODUCT,
+  ClearBasket,
+  CLEAR_BASKET,
   DecrementProductInBasket,
   DECREMENT_PRODUCT,
   DeleteProductFromBasket,
@@ -36,6 +38,7 @@ export const basketReducer = (
     | AddProductToBasket
     | DecrementProductInBasket
     | DeleteProductFromBasket
+    | ClearBasket
 ) => {
   switch (action.type) {
     case ADD_PRODUCT:
@@ -44,6 +47,8 @@ export const basketReducer = (
       return [...decrement(state, action.payload)];
     case DELETE_PRODUCT:
       return [...deleteItemFromArray(state, action.payload)];
+    case CLEAR_BASKET:
+      return initialState;
     default:
       return state;
   }

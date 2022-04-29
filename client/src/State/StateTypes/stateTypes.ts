@@ -2,9 +2,9 @@ export const SAVE_TOKEN = "SAVE_TOKEN";
 export const DELETE_TOKEN = "DELETE_TOKEN";
 export const DECREMENT_PRODUCT = "DECREMENT_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const SET_STEP = "SET_STEP";
-export const RESET_STEP = "RESET_STEP";
+export const CLEAR_BASKET = "CLEAR_BASKET";
 export const SAVE_SHIPPING_ADDRESS = "SAVE_SHIPPING_ADDRESS";
+export const SAVE_CART_PRODUCTS = "SAVE_CART_PRODUCTS";
 
 // Token State
 export type Token = {
@@ -42,14 +42,8 @@ export type DeleteProductFromBasket = {
   payload: string;
 };
 
-// Checkout Types
-export type SetCheckoutStep = {
-  type: typeof SET_STEP;
-  payload: number;
-};
-
-export type ResetCheckoutStep = {
-  type: typeof RESET_STEP;
+export type ClearBasket = {
+  type: typeof CLEAR_BASKET;
 };
 
 export type ShippingAddress = {
@@ -66,4 +60,38 @@ export type ShippingAddress = {
 export type SaveShippingAddress = {
   type: typeof SAVE_SHIPPING_ADDRESS;
   payload: ShippingAddress;
+};
+
+export type CartProducts = {
+  userId: string | null;
+  products: {
+    id: string;
+    quantity: number;
+    price: number;
+  }[];
+  subTotal: number;
+  vat: number;
+  shipping: number;
+  freeShipping: number;
+  totalAmound: number;
+};
+
+export type SaveCartProducts = {
+  type: typeof SAVE_CART_PRODUCTS;
+  payload: CartProducts;
+};
+
+export type Order = {
+  userId: string | null;
+  products: {
+    id: string;
+    quantity: number;
+    price: number;
+  }[];
+  subTotal: number;
+  vat: number;
+  shipping: number;
+  freeShipping: number;
+  totalAmound: number;
+  shippingAddress: ShippingAddress;
 };

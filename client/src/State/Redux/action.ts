@@ -10,13 +10,14 @@ import {
   SaveToken,
   SAVE_TOKEN,
   Token,
-  SET_STEP,
-  SetCheckoutStep,
-  ResetCheckoutStep,
-  RESET_STEP,
   SaveShippingAddress,
   SAVE_SHIPPING_ADDRESS,
   ShippingAddress,
+  CartProducts,
+  SaveCartProducts,
+  SAVE_CART_PRODUCTS,
+  ClearBasket,
+  CLEAR_BASKET,
 } from "../StateTypes/stateTypes";
 
 export function saveToken(token: Token): SaveToken {
@@ -58,17 +59,9 @@ export function deleteProductFromBasket(
   };
 }
 
-// Checkout
-export function setCheckoutStep(step: number): SetCheckoutStep {
+export function clearBasket(): ClearBasket {
   return {
-    type: SET_STEP,
-    payload: step,
-  };
-}
-
-export function resetCheckoutStep(): ResetCheckoutStep {
-  return {
-    type: RESET_STEP,
+    type: CLEAR_BASKET,
   };
 }
 
@@ -78,5 +71,12 @@ export function saveShippingAddress(
   return {
     type: SAVE_SHIPPING_ADDRESS,
     payload: shippingAddress,
+  };
+}
+
+export function saveCartProducts(cartProducts: CartProducts): SaveCartProducts {
+  return {
+    type: SAVE_CART_PRODUCTS,
+    payload: cartProducts,
   };
 }

@@ -24,7 +24,7 @@ import { Help } from "./components/Help/Help";
 import { RequireAuth } from "./services/RequireAuth";
 import { AboutUs } from "./pages/AboutUs/AboutUs";
 import { HelpAndContact } from "./pages/HelpAndContact/HelpAndContact";
-import { DataPreferences } from "./pages/DataPreferences/DataPreferences";
+import { OrderInfo } from "./components/OrderInfo/OrderInfo";
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
           <Route path="productdetail/:id" element={<ProductDetail />} />
           <Route path="test" element={<Test />} />
           <Route path="basket" element={<BasketPage />} />
+
           <Route element={<RequireAuth role={["admin", "user"]} />}>
             <Route path="myaccount" element={<MyAccount />}>
               <Route path="" element={<MyOrders />} />
@@ -45,6 +46,8 @@ function App() {
               <Route path="help" element={<Help />} />
             </Route>
           </Route>
+
+          <Route path="orderinfo/:status/:message/:orderid" element={<OrderInfo />} />
 
           <Route element={<RequireAuth role={["admin"]} />}>
             <Route path="admin" element={<Admin />}>
@@ -67,7 +70,6 @@ function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="contact" element={<HelpAndContact />} />
-          <Route path="datapreferences" element={<DataPreferences />} />
         </Routes>
       </div>
 
