@@ -27,6 +27,7 @@ const orderSchema = new mongoose.Schema({
   shipping: { type: Number, default: 0 },
   freeShipping: { type: Number, default: 0 },
   totalAmound: Number,
+  created_at: {type: Date, default: Date.now},
 });
 
 export default mongoose.model("Order", orderSchema);

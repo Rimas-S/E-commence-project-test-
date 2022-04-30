@@ -136,3 +136,11 @@ content-type: application/json
   "freeShipping": 0,
   "totalAmound": 8
 }
+
+###
+GET http://localhost:5000/api/v1/orders/6240a87b1b183019a5b101df
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwYTg3YjFiMTgzMDE5YTViMTAxZGYiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY1MTI1OTI5NiwiZXhwIjoxNjUxMjYyODk2fQ.oybRT_PbRhlsaum1GRpEdY3n1OimV7sIOde1EEsN_co
+
+###
+GET http://localhost:5000/api/v1/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwYTg3YjFiMTgzMDE5YTViMTAxZGYiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY1MTI1OTI5NiwiZXhwIjoxNjUxMjYyODk2fQ.oybRT_PbRhlsaum1GRpEdY3n1OimV7sIOde1EEsN_co

@@ -1,0 +1,17 @@
+.myorders {
+  table {
+    width: 100%;
+
+    img {
+      width: 50px;
+    }
+  }
+
+  &__list {
+      &--product {
+        p {
+            font-size: 0.75rem;
+        }
+      }
+  }
+}

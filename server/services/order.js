@@ -4,4 +4,14 @@ const create = async (order) => {
   return await order.save();
 };
 
-export default { create };
+const getOrdersByUserId = async (id) => {
+  const orders = await Order.find({ userId: id }).populate("products.id", "-price");
+  return orders;
+};
+
+const findAllOrders = async() => {
+  const orders = await Order.find();
+  return orders;
+}
+
+export default { create, getOrdersByUserId, findAllOrders };

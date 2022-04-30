@@ -95,3 +95,8 @@ export type Order = {
   totalAmound: number;
   shippingAddress: ShippingAddress;
 };
+
+export type FetchedOrder = Order & {
+  _id: string;
+  created_at: string;
+};
