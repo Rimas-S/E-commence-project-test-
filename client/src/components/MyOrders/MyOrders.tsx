@@ -56,6 +56,7 @@ export const MyOrders = () => {
                         <th>Name</th>
                         <th>Color</th>
                         <th>Size</th>
+                        <th>Quantity</th>
                       </tr>
                     </thead>
                     {order.products.map((product: any, index: number) => (
@@ -67,6 +68,7 @@ export const MyOrders = () => {
                           <td>{product.id.name}</td>
                           <td>{product.id.color}</td>
                           <td>{product.id.size}</td>
+                          <td>{product.quantity}</td>
                         </tr>
                       </tbody>
                     ))}
