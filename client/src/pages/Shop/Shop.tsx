@@ -10,16 +10,21 @@ const Shop = () => {
   const [data, setData] = React.useState<any>();
 
   React.useEffect(() => {
+    let isMounted = false;
     axiosInstance
       .get("/products")
       .then(function (response) {
         // handle success
+        if (isMounted) return;
         setData(response.data);
       })
       .catch(function (error) {
         // handle error
         console.log(error);
       });
+    return () => {
+      isMounted = true;
+    };
   }, []);
 
   const mapCard = (data: any) => {

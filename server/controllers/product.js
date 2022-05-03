@@ -50,7 +50,17 @@ export const findProduct = async (req, res) => {
 
 export const findAll = async (req, res) => {
   try {
-    const products = await ProductService.findAllData();
+    const products = await ProductService.findAll();
+    res.json(products);
+  } catch (err) {
+    res.json(err);
+    console.log(err);
+  }
+};
+
+export const findAllWithoutImages = async (req, res) => {
+  try {
+    const products = await ProductService.findAllWithoutImages();
     res.json(products);
   } catch (err) {
     res.json(err);

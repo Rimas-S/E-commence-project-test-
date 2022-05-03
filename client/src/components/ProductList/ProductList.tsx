@@ -112,18 +112,21 @@ const ProductList = () => {
   };
 
   React.useEffect(() => {
+    let isMounted = false;
     axiosInstance
-      .get("/products", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .get("/products/withoutimages")
       .then(function (response) {
         // handle success
+        if (isMounted) return;
         setData(response.data);
       })
       .catch(function (error) {
         // handle error
         console.log(error);
       });
+    return () => {
+      isMounted = true;
+    };
   }, [deletedData, token]);
 
   if (data) {

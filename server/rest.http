@@ -23,6 +23,9 @@ content-type: application/json
 GET http://localhost:5000/api/v1/products
 
 ###
+GET http://localhost:5000/api/v1/products/withoutimages
+
+###
 GET http://localhost:5000/api/v1/products/productbyids
 content-type: application/json
 
@@ -143,4 +146,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwY
 
 ###
 GET http://localhost:5000/api/v1/orders
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjQwYTg3YjFiMTgzMDE5YTViMTAxZGYiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY1MTI1OTI5NiwiZXhwIjoxNjUxMjYyODk2fQ.oybRT_PbRhlsaum1GRpEdY3n1OimV7sIOde1EEsN_co
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjYxYzFlMzg0OTdlNzY0OTI1MTk5ZWMiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTEyNjEzNzYsImV4cCI6MTY1MTI2NDk3Nn0.R96C4u7GJDNJmgSxHuq0_-YrFdg3KFYhUXv7dYe4-Gk

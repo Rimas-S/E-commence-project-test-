@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RootStateOrAny, useSelector } from "react-redux";
-import { date } from "yup/lib/locale";
+import { Link } from "react-router-dom";
 import { axiosInstance } from "../../config";
 import { FetchedOrder, Token } from "../../State/StateTypes/stateTypes";
 import MuiLoader from "../MuiLoader/MuiLoader";
@@ -25,8 +25,6 @@ export const MyOrders = () => {
         console.log(error);
       });
   }, [token?.token, token?.userId]);
-
-  const date = new Date();
 
   return (
     <div className="myorders">
@@ -54,25 +52,35 @@ export const MyOrders = () => {
                       <tr>
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Color</th>
-                        <th>Size</th>
                         <th>Quantity</th>
+                        <th>Price</th>
                       </tr>
                     </thead>
                     {order.products.map((product: any, index: number) => (
                       <tbody key={index}>
                         <tr>
                           <td className="flex">
-                            <img src={product.id.image[0]} alt="" />
+                            <Link to={`/productdetail/${product.id._id}`}>
+                              <img src={product.id.image[0]} alt="" />
+                            </Link>
                           </td>
-                          <td>{product.id.name}</td>
-                          <td>{product.id.color}</td>
-                          <td>{product.id.size}</td>
+                          <td>
+                            <Link to={`/productdetail/${product.id._id}`}>
+                              {product.id.name}{" "}
+                            </Link>
+                          </td>
                           <td>{product.quantity}</td>
+                          <td>{product.price}</td>
                         </tr>
                       </tbody>
                     ))}
                   </table>
+                  {/* Test */}
+                  <p>{order.subTotal}</p>
+                  <p>{order.vat}</p>
+                  <p>{order.shipping}</p>
+                  <p>{order.freeShipping}</p>
+                  <p>{order.totalAmound}</p>
                 </div>
               ))}
             </div>

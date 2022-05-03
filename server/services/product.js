@@ -1,13 +1,15 @@
 import Product from "../models/product.js";
 
-
 const findProductByName = async (name) => {
   const product = await Product.findOne({ name });
   return product;
 };
 
 const findProductById = async (id) => {
-  const product = await Product.findById(id).populate('ratings.user', '-password');
+  const product = await Product.findById(id).populate(
+    "ratings.user",
+    "-password"
+  );
   return product;
 };
 
@@ -15,12 +17,16 @@ const create = async (product) => {
   return product.save();
 };
 
-const findAllData = async () => {
+const findAll = async () => {
   return Product.find();
 };
 
+const findAllWithoutImages = async () => {
+  return Product.find().select('-image');
+};
+
 const findArrayOfIds = async (arr) => {
-  return Product.find({_id: {$in: arr}});
+  return Product.find({ _id: { $in: arr } });
 };
 
 const deleteProduct = async (_id) => {
@@ -40,11 +46,12 @@ const addRateToUser = async (productId, rate) => {
 
 export default {
   create,
-  findAllData,
+  findAll,
+  findAllWithoutImages,
   findArrayOfIds,
   updateProduct,
   deleteProduct,
   findProductByName,
   findProductById,
-  addRateToUser
+  addRateToUser,
 };

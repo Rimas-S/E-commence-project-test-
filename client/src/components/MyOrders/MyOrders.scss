@@ -2,16 +2,20 @@
   table {
     width: 100%;
 
+    td {
+      text-align: center;
+    }
+
     img {
       width: 50px;
     }
   }
 
   &__list {
-      &--product {
-        p {
-            font-size: 0.75rem;
-        }
+    &--product {
+      p {
+        font-size: 0.75rem;
       }
+    }
   }
 }

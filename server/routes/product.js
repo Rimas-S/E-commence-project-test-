@@ -4,6 +4,7 @@ import { checkIsInRole } from "../util/secrets.js"
 import {
   createProduct,
   findAll,
+  findAllWithoutImages,
   findArrayOfProducts,
   findProduct,
   updateProduct,
@@ -14,6 +15,7 @@ import {
 const router = Router();
 
 router.get("/", findAll);
+router.get("/withoutimages", findAllWithoutImages);
 router.get("/:id", findProduct);
 router.patch("/productbyids", findArrayOfProducts);
 router.post("/", passport.authenticate('jwt', {session:false}), checkIsInRole("admin"), createProduct);
