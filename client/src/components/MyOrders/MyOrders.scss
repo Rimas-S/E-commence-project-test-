@@ -6,6 +6,10 @@
       text-align: center;
     }
 
+    th {
+      border-bottom: solid 1px black;
+    }
+
     img {
       width: 50px;
     }
@@ -13,8 +17,21 @@
 
   &__list {
     &--product {
-      p {
+      background-color: var(--backgroundColorSoft);
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      &--time {
         font-size: 0.75rem;
+      }
+
+      &--cost {
+        p {
+          line-height: 1.6rem;
+        }
+
+        h4 {
+          text-align: end;
+        }
       }
     }
   }

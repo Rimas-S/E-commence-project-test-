@@ -43,7 +43,7 @@ export const MyOrders = () => {
               {orders.map((order: FetchedOrder, index: number) => (
                 <div className="myorders__list--product" key={index}>
                   <h3>Order ID: {order._id}</h3>
-                  <p>
+                  <p className="myorders__list--product--time">
                     {new Date(order.created_at).toDateString()}{" "}
                     {new Date(order.created_at).toTimeString()}
                   </p>
@@ -76,11 +76,13 @@ export const MyOrders = () => {
                     ))}
                   </table>
                   {/* Test */}
-                  <p>{order.subTotal}</p>
-                  <p>{order.vat}</p>
-                  <p>{order.shipping}</p>
-                  <p>{order.freeShipping}</p>
-                  <p>{order.totalAmound}</p>
+                  <div className="myorders__list--product--cost">
+                    <p>Subtotal: {order.subTotal}</p>
+                    <p>VAT: {order.vat}</p>
+                    <p>Shipping cost: {order.shipping}</p>
+                    <p>Shipping discount: {order.freeShipping}</p>
+                    <h4>Total: {order.totalAmound}</h4>
+                  </div>
                 </div>
               ))}
             </div>
